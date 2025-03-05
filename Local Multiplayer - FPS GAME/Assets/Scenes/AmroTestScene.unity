@@ -577,8 +577,6 @@ GameObject:
   - component: {fileID: 332282604}
   - component: {fileID: 332282603}
   - component: {fileID: 332282606}
-  - component: {fileID: 332282608}
-  - component: {fileID: 332282607}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -704,45 +702,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!143 &332282607
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332282602}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &332282608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332282602}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb1895c079e447e4584537de131d3246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotationSpeed: 100
 --- !u!1001 &380405850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,6 +1382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 997319129}
   - component: {fileID: 997319128}
+  - component: {fileID: 997319130}
   m_Layer: 0
   m_Name: MapContainer
   m_TagString: Untagged
@@ -1532,6 +1492,20 @@ Transform:
   - {fileID: 1038111045}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997319130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997319127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867aceff82f2bf14c8906272f51d9de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestTile: {fileID: 2109934169}
+  moveSpeed: 2
 --- !u!1 &1038111042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: db00db954ee84b148aa3942ef8fb97f8, type: 3}
