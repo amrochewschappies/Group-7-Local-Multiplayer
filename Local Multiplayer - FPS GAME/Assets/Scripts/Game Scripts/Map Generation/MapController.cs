@@ -21,7 +21,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < 15; i++)
         {
             int randomTile = Random.Range(0, Tiles.Length);
-            int randomNumber = Random.Range(0, 40) * 50;
+            int randomNumber = Random.Range(0, 4) * 500;
             Vector3 newScale = new Vector3(100, 100, randomNumber);
             Tiles[randomTile].transform.localScale = newScale;
 
