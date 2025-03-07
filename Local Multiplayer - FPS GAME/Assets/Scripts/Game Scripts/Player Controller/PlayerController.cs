@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
         [Header("Movement settings")] 
         [SerializeField][Range(0f,15f)]private float moveSpeed = 5f;
         [SerializeField][Range(0f,20f)]private float jumpForce = 5f;
-        [SerializeField][Range(0f,15f)]private float lookSensitivity = 2f;
-        [SerializeField][Range(0f, 15f)] private float controllerSensitivity = 15f;
+        [SerializeField][Range(0f,15f)]private float mouseSensitivity = 2f;
+   
+        [SerializeField][Range(0f, 25f)] private float controllerSensitivityX = 15f;
+        [SerializeField][Range(0f, 25f)] private float controllerSensitivityY = 15f;
     #endregion
     #region ControlScheme checks
 
@@ -53,15 +55,16 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleJump();
-
+        HandleLook(); 
     }
     
     //use lateUpdate() - to process the camera movement after player has moved
     private void LateUpdate()
     { 
-        HandleLook(); 
+
     }
 
+    [ContextMenu("HandleMovement")]
     private void HandleMovement()
     {
         Vector3 move = transform.right  * moveInput.x + transform.forward * moveInput.y;
@@ -75,7 +78,7 @@ public class PlayerController : MonoBehaviour
         //is on the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
 
-        if (jumpInput && isGrounded)
+        if (jumpInput )
         {                                      //Apply instant force
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);// 2 arguments, direction + forcemode type
         }
@@ -85,18 +88,35 @@ public class PlayerController : MonoBehaviour
     
     private void HandleLook()
     {
+      
         float lookX = lookInput.x;
         float lookY = lookInput.y;
 
-        // Apply different sensitivities for mouse and controller, with exponential scaling for controller input
-        float sensitivityX = (Mathf.Abs(lookX) > 0.1f) ? lookSensitivity : controllerSensitivity * Mathf.Abs(lookX); // Exponentially increase sensitivity
-        float sensitivityY = (Mathf.Abs(lookY) > 0.1f) ? lookSensitivity : controllerSensitivity * Mathf.Abs(lookY);
+// Apply different sensitivities for mouse and controller
+        float sensitivityX = isMouse ? mouseSensitivity : controllerSensitivityX;
+        float sensitivityY = isMouse ? mouseSensitivity : controllerSensitivityY;
 
-        lookX *= sensitivityX;
-        lookY *= sensitivityY;
+// Apply deadzone to controller input for smoother handling of small stick movements
+        float controllerDeadzone = 0.2f;  // Set this to your preferred deadzone threshold
+        if (isController)
+        {
+            if (Mathf.Abs(lookX) < controllerDeadzone) lookX = 0;
+            if (Mathf.Abs(lookY) < controllerDeadzone) lookY = 0;
 
+            // Increase sensitivity for X and Y axis separately
+            lookX *= sensitivityX; // X-axis sensitivity for controller
+            lookY *= sensitivityY; // Y-axis sensitivity for controller
+        }
+        else
+        {
+            lookX *= sensitivityX; // Mouse sensitivity remains as is
+            lookY *= sensitivityY;
+        }
+
+// Rotate the player horizontally (Y-axis)
         transform.Rotate(Vector3.up * lookX);
 
+// Clamp vertical camera rotation between -80 and 80 degrees
         float currentXRotation = cameraTransform.localEulerAngles.x;
         float newRotationX = currentXRotation - lookY;
 
@@ -107,11 +127,14 @@ public class PlayerController : MonoBehaviour
 
         newRotationX = Mathf.Clamp(newRotationX, -80f, 80f);
 
+// Smooth the vertical rotation (camera pitch) movement
         float smoothSpeed = 10f;
         float smoothedRotationX = Mathf.LerpAngle(cameraTransform.localEulerAngles.x, newRotationX, Time.deltaTime * smoothSpeed);
 
         cameraTransform.localEulerAngles = new Vector3(smoothedRotationX, cameraTransform.localEulerAngles.y, 0);
     }
+
+
 
 
 

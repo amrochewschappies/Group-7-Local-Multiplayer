@@ -97,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741336072160</updated>
       <workItem from="1741336074975" duration="2170000" />
-      <workItem from="1741338340491" duration="1882000" />
+      <workItem from="1741338340491" duration="4939000" />
     </task>
     <servers />
   </component>
@@ -111,6 +111,17 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
