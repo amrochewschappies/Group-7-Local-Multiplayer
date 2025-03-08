@@ -23,8 +23,8 @@ public class TileController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && !isMoving)  
         {
             isMoving = true;
-            targetScale.z = TestTile.transform.localScale.z + 500;
-            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z / 1166.940397f, TestTile.transform.position.z);
+            targetScale.z = TestTile.transform.localScale.z + 15;
+            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
             
         }
 
