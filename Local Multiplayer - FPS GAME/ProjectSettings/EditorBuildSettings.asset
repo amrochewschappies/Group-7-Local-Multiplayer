@@ -12,5 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/AmroTestScene.unity
     guid: 38846f5498d1316478b3a0d8dad61189
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 47782d1cf4f4d5b4392c32d5a47027ab, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
