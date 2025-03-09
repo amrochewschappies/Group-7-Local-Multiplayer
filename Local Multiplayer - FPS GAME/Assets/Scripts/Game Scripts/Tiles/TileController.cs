@@ -12,17 +12,64 @@ public class TileController : MonoBehaviour
 
     public float countdown = 2f;
 
+    public float raycastDistance;
+
+    public Material HoverMaterial;
+
+    public Material StandardMaterial;
+
+    private Renderer HitTile;
+
+    private Renderer PrevHitObject;
+
+    public GameObject Camera;
+
+
     private void Start()
     {
-        targetScale = TestTile.transform.localScale;
-        targetPosition = TestTile.transform.position;
+        
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) && !isMoving)  
+        Vector3 SpawnPosition = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        Ray ray = new Ray(Camera.transform.position, Camera.transform.forward);
+        RaycastHit hit;
+
+        Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red);
+
+        if (Physics.Raycast(ray, out hit, raycastDistance))
+        {
+            if (hit.collider.gameObject.CompareTag("Ground"))
+            {
+                HitTile = hit.collider.gameObject.GetComponent<MeshRenderer>();
+
+                if (HitTile != PrevHitObject)
+                {
+                    HitTile.material = HoverMaterial;
+                    if (PrevHitObject == null)
+                    {
+                        PrevHitObject = HitTile;
+                    }
+                    else
+                    {
+                        PrevHitObject.material = StandardMaterial;
+                        PrevHitObject = HitTile;
+                    }
+                }                
+            }
+            else
+            {
+                PrevHitObject.material = StandardMaterial;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.C) && !isMoving)  
         {
             isMoving = true;
+            TestTile = HitTile.gameObject;
+            targetScale = TestTile.transform.localScale;
+            targetPosition = TestTile.transform.position;
             targetScale.z = TestTile.transform.localScale.z + 15;
             targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
             
