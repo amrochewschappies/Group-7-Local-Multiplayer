@@ -32,7 +32,6 @@ public class TileController : MonoBehaviour
 
     void Update()
     {
-        Vector3 SpawnPosition = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
         Ray ray = new Ray(Camera.transform.position, Camera.transform.forward);
         RaycastHit hit;
 
@@ -82,7 +81,7 @@ public class TileController : MonoBehaviour
             targetScale = TestTile.transform.localScale;
             targetPosition = TestTile.transform.position;
             targetScale.z = TestTile.transform.localScale.z - 15;
-            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z / 0.0397325f, TestTile.transform.position.z);
+            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
             
         }
 
