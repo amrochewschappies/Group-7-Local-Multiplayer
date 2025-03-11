@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector2 moveInput;
     private Vector2 lookInput;
+    private Vector3 moveTile;
     private bool jumpInput;
     private PlayerInput playerInput;
     [SerializeField] private bool isGrounded;
@@ -72,6 +73,11 @@ public class PlayerController : MonoBehaviour
         playerInput.actions["Look"].canceled += ctx => lookInput = Vector2.zero;
         //player jump
         playerInput.actions["Jump"].performed += ctx => jumpInput = true;
+        
+        
+        //move tile
+        playerInput.actions["MoveTile"].performed += ctx => moveTile = ctx.ReadValue<Vector3>();
+        playerInput.actions["MoveTile"].canceled += ctx => moveTile = Vector3.zero;
 
     }
 
@@ -80,6 +86,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
         HandleLook();
+        MoveTile();
         ApplyGravity();
     }
 
@@ -214,6 +221,11 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(duration);
             gamepad.SetMotorSpeeds(0, 0); 
         }
+    }
+
+    void MoveTile()
+    {
+                
     }
 
 }

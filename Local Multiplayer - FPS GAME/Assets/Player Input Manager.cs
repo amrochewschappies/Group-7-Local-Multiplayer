@@ -113,7 +113,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""482c99c3-9c35-478a-89d3-8eaf3d8ca5e3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -122,7 +122,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""a1d7cc73-b1aa-493a-87e8-97536102f1a6"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
@@ -131,7 +131,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""c83050cf-a108-41bc-8fe3-a9d755f88acf"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -140,7 +140,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""3aa5a4ef-7f53-4e8d-8329-20be0c1419d0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -149,7 +149,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Previous"",
                     ""type"": ""Button"",
                     ""id"": ""4f2dcda6-af2f-49d2-8d06-ea007179ced7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -158,7 +158,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""e02ef7ce-6823-4e22-b09e-2dfbc4cbf52f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -176,6 +176,15 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Join"",
                     ""type"": ""Button"",
                     ""id"": ""c62dd0e4-69ff-4112-afb4-1d0b4830e032"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveTile"",
+                    ""type"": ""Button"",
+                    ""id"": ""64b2a67c-9276-4a00-9560-d20dd31f4dd4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -543,6 +552,28 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad;Keyboard&Mouse"",
                     ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eab34676-4662-400d-a797-9811bdf21365"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveTile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dd41822-5a09-4a72-818a-0de514e0eb77"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MoveTile"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1570,6 +1601,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         m_Player1_Next = m_Player1.FindAction("Next", throwIfNotFound: true);
         m_Player1_Sprint = m_Player1.FindAction("Sprint", throwIfNotFound: true);
         m_Player1_Join = m_Player1.FindAction("Join", throwIfNotFound: true);
+        m_Player1_MoveTile = m_Player1.FindAction("MoveTile", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
@@ -1685,6 +1717,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_Next;
     private readonly InputAction m_Player1_Sprint;
     private readonly InputAction m_Player1_Join;
+    private readonly InputAction m_Player1_MoveTile;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player1".
     /// </summary>
@@ -1736,6 +1769,10 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player1/Join".
         /// </summary>
         public InputAction @Join => m_Wrapper.m_Player1_Join;
+        /// <summary>
+        /// Provides access to the underlying input action "Player1/MoveTile".
+        /// </summary>
+        public InputAction @MoveTile => m_Wrapper.m_Player1_MoveTile;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1792,6 +1829,9 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Join.started += instance.OnJoin;
             @Join.performed += instance.OnJoin;
             @Join.canceled += instance.OnJoin;
+            @MoveTile.started += instance.OnMoveTile;
+            @MoveTile.performed += instance.OnMoveTile;
+            @MoveTile.canceled += instance.OnMoveTile;
         }
 
         /// <summary>
@@ -1833,6 +1873,9 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Join.started -= instance.OnJoin;
             @Join.performed -= instance.OnJoin;
             @Join.canceled -= instance.OnJoin;
+            @MoveTile.started -= instance.OnMoveTile;
+            @MoveTile.performed -= instance.OnMoveTile;
+            @MoveTile.canceled -= instance.OnMoveTile;
         }
 
         /// <summary>
@@ -2387,6 +2430,13 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJoin(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveTile" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveTile(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player2" which allows adding and removing callbacks.

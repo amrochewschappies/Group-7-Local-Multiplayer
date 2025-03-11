@@ -27,7 +27,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "482c99c3-9c35-478a-89d3-8eaf3d8ca5e3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -36,7 +36,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "a1d7cc73-b1aa-493a-87e8-97536102f1a6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -45,7 +45,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "c83050cf-a108-41bc-8fe3-a9d755f88acf",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -54,7 +54,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "3aa5a4ef-7f53-4e8d-8329-20be0c1419d0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,7 +63,7 @@
                     "name": "Previous",
                     "type": "Button",
                     "id": "4f2dcda6-af2f-49d2-8d06-ea007179ced7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                     "name": "Next",
                     "type": "Button",
                     "id": "e02ef7ce-6823-4e22-b09e-2dfbc4cbf52f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,6 +90,15 @@
                     "name": "Join",
                     "type": "Button",
                     "id": "c62dd0e4-69ff-4112-afb4-1d0b4830e032",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveTile",
+                    "type": "Button",
+                    "id": "64b2a67c-9276-4a00-9560-d20dd31f4dd4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -457,6 +466,28 @@
                     "processors": "",
                     "groups": ";Gamepad;Keyboard&Mouse",
                     "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eab34676-4662-400d-a797-9811bdf21365",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "MoveTile",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dd41822-5a09-4a72-818a-0de514e0eb77",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveTile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
