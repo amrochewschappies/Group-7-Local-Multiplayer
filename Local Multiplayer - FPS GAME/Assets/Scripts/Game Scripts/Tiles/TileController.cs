@@ -24,6 +24,8 @@ public class TileController : MonoBehaviour
 
     public GameObject Camera;
 
+    public GameObject SmokeVfx;
+
 
     private void Start()
     {
@@ -71,7 +73,7 @@ public class TileController : MonoBehaviour
             targetPosition = TestTile.transform.position;
             targetScale.z = TestTile.transform.localScale.z + 15;
             targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-            
+            SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
         }
         
         if (Input.GetKey(KeyCode.V) && !isMoving)  
@@ -82,7 +84,7 @@ public class TileController : MonoBehaviour
             targetPosition = TestTile.transform.position;
             targetScale.z = TestTile.transform.localScale.z - 15;
             targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-            
+            SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));      
         }
 
         if (isMoving)
@@ -99,5 +101,10 @@ public class TileController : MonoBehaviour
                 countdown = 2f;
             }
         }
+    }
+
+    void SpawnSmoke(Vector3 SmokeSpawnPosition)
+    {
+        Instantiate(SmokeVfx, SmokeSpawnPosition, Quaternion.identity);
     }
 }

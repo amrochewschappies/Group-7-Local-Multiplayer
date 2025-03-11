@@ -1011,6 +1011,7 @@ MonoBehaviour:
   HoverMaterial: {fileID: 2100000, guid: 5eee5d891d0634f49aabee3c401c6689, type: 2}
   StandardMaterial: {fileID: 2100000, guid: 1598c4db83ffdb24f882bf62e871343f, type: 2}
   Camera: {fileID: 332065389}
+  SmokeVfx: {fileID: 3496496029925515223, guid: 10165f8e27d3a8d44b82428cbeb49bef, type: 3}
 --- !u!1 &288948594 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 160aa6681662d1e439840995f85c9622, type: 3}
