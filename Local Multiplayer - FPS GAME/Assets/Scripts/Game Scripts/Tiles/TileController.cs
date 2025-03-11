@@ -74,6 +74,17 @@ public class TileController : MonoBehaviour
             targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
             
         }
+        
+        if (Input.GetKey(KeyCode.V) && !isMoving)  
+        {
+            isMoving = true;
+            TestTile = HitTile.gameObject;
+            targetScale = TestTile.transform.localScale;
+            targetPosition = TestTile.transform.position;
+            targetScale.z = TestTile.transform.localScale.z - 15;
+            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z / 0.0397325f, TestTile.transform.position.z);
+            
+        }
 
         if (isMoving)
         {

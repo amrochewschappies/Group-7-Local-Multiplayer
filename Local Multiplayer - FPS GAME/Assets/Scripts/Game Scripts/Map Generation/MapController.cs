@@ -7,6 +7,7 @@ public class MapController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         GenerateMap();
     }
 
@@ -21,7 +22,7 @@ public class MapController : MonoBehaviour
         for (int i = 0; i < 15; i++)
         {
             int randomTile = Random.Range(0, Tiles.Length);
-            int randomNumber = Random.Range(0, 4) * 15;
+            int randomNumber = Random.Range(1, 4) * 10;
             Vector3 newScale = new Vector3(100, 100, randomNumber);
             Tiles[randomTile].transform.localScale = newScale;
 
