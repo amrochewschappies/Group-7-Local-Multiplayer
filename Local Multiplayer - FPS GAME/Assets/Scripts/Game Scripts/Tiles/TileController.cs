@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    public GameObject TestTile;
+   public GameObject TestTile;
     public float moveSpeed = 5f;  
 
     private Vector3 targetScale;

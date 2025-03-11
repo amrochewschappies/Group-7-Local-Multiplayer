@@ -164,7 +164,8 @@ public class PlayerController : MonoBehaviour
         {
             if (wasInAir) 
             {
-                StartCoroutine(TriggerRumble(0.5f, 0.7f, 0.2f)); 
+                StartCoroutine(TriggerRumble(0.2f, 0.7f, 0.175f)); 
+              
             }
             coyoteTimeCounter = coyoteTime;
             wasInAir = false; // Reset after landing
