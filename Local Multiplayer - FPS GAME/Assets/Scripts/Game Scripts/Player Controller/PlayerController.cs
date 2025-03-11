@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour
         
         
         //move tile
-        playerInput.actions["MoveTile"].performed += ctx => moveTile = ctx.ReadValue<Vector3>();
-        playerInput.actions["MoveTile"].canceled += ctx => moveTile = Vector3.zero;
+        //playerInput.actions["MoveTile"].performed += ctx => moveTile = ctx.ReadValue<Vector3>();
+        //playerInput.actions["MoveTile"].canceled += ctx => moveTile = Vector3.zero;
 
     }
 
