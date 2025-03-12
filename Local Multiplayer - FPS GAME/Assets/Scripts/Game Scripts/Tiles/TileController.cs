@@ -61,7 +61,10 @@ public class TileController : MonoBehaviour
             }
             else
             {
-                PrevHitObject.material = StandardMaterial;
+                if (PrevHitObject != null)
+                {
+                    PrevHitObject.material = StandardMaterial;
+                }
             }
         }
 
