@@ -29,8 +29,8 @@ public class TileController : MonoBehaviour
     private void Start()
     {
         // Subscribe to input actions
-        PlayerInput.actions["TileUp"].performed += ctx => MoveTile(true);  // Right Trigger
-        PlayerInput.actions["TileDown"].performed += ctx => MoveTile(false); // Left Trigger
+        PlayerInput.actions["TileUp"].performed += ctx => MoveTile(true);  // tile up is the right trigger & C on KBM
+        PlayerInput.actions["TileDown"].performed += ctx => MoveTile(false); // tile down is the left trigger & V on KBM
     }
 
     void Update()
