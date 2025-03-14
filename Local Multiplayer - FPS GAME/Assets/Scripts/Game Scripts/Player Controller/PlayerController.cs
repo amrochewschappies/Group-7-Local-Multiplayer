@@ -129,8 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         float controllerLookX = lookInput.x * controllerSensitivityX;
         float controllerLookY = lookInput.y * controllerSensitivityY;
-
-        // Deadzone to prevent very small movements from affecting look direction
+        
         if (Mathf.Abs(lookInput.x) < controllerDeadzone) controllerLookX = 0;
         if (Mathf.Abs(lookInput.y) < controllerDeadzone) controllerLookY = 0;
 
@@ -150,7 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             if (wasInAir)
             {
-                StartCoroutine(TriggerRumble(0.2f, 0.7f, 0.175f)); // Trigger rumble on landing
+                StartCoroutine(TriggerRumble(0.2f, 0.8f, 0.175f)); 
             }
             coyoteTimeCounter = coyoteTime;
             wasInAir = false;

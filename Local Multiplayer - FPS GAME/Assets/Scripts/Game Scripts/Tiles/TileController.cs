@@ -21,6 +21,10 @@ public class TileController : MonoBehaviour
     public GameObject Camera;
     public GameObject SmokeVfx;
     public PlayerInput PlayerInput;
+    
+    
+    private Color originalColor;
+    private bool isHovering = false;
 
     private void Start()
     {
@@ -55,8 +59,7 @@ public class TileController : MonoBehaviour
                 PrevHitObject = null;
             }
         }
-
-        // Animate the tile movement
+        
         if (isMoving)
         {
             if (countdown > 0)
@@ -72,6 +75,7 @@ public class TileController : MonoBehaviour
             }
         }
     }
+    
 
     private void MoveTile(bool moveUp)
     {
