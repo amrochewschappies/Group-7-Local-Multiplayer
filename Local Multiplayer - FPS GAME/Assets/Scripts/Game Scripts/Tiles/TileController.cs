@@ -1,35 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TileController : MonoBehaviour
 {
-   public GameObject TestTile;
-    public float moveSpeed = 5f;  
+    public GameObject TestTile;
+    public float moveSpeed = 5f;
 
     private Vector3 targetScale;
     private Vector3 targetPosition;
-
     private bool isMoving = false;
-
-    public float countdown = 2f;
+    private float countdown = 2f;
 
     public float raycastDistance;
-
     public Material HoverMaterial;
-
     public Material StandardMaterial;
 
     private Renderer HitTile;
-
     private Renderer PrevHitObject;
 
     public GameObject Camera;
-
     public GameObject SmokeVfx;
-
+    public PlayerInput PlayerInput;
 
     private void Start()
     {
-        
+        // Subscribe to input actions
+        PlayerInput.actions["TileUp"].performed += ctx => MoveTile(true);  // Right Trigger
+        PlayerInput.actions["TileDown"].performed += ctx => MoveTile(false); // Left Trigger
     }
 
     void Update()
@@ -48,50 +45,23 @@ public class TileController : MonoBehaviour
                 if (HitTile != PrevHitObject)
                 {
                     HitTile.material = HoverMaterial;
-                    if (PrevHitObject == null)
-                    {
-                        PrevHitObject = HitTile;
-                    }
-                    else
-                    {
-                        PrevHitObject.material = StandardMaterial;
-                        PrevHitObject = HitTile;
-                    }
-                }                
+                    if (PrevHitObject != null) PrevHitObject.material = StandardMaterial;
+                    PrevHitObject = HitTile;
+                }
             }
-            else
+            else if (PrevHitObject != null)
             {
                 PrevHitObject.material = StandardMaterial;
+                PrevHitObject = null;
             }
         }
 
-        if (Input.GetKey(KeyCode.C) && !isMoving)  
-        {
-            isMoving = true;
-            TestTile = HitTile.gameObject;
-            targetScale = TestTile.transform.localScale;
-            targetPosition = TestTile.transform.position;
-            targetScale.z = TestTile.transform.localScale.z + 15;
-            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-            SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
-        }
-        
-        if (Input.GetKey(KeyCode.V) && !isMoving)  
-        {
-            isMoving = true;
-            TestTile = HitTile.gameObject;
-            targetScale = TestTile.transform.localScale;
-            targetPosition = TestTile.transform.position;
-            targetScale.z = TestTile.transform.localScale.z - 15;
-            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-            SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));      
-        }
-
+        // Animate the tile movement
         if (isMoving)
         {
             if (countdown > 0)
             {
-                countdown = countdown - Time.deltaTime;
+                countdown -= Time.deltaTime;
                 TestTile.transform.localScale = Vector3.Lerp(TestTile.transform.localScale, targetScale, moveSpeed * Time.deltaTime);
                 TestTile.transform.position = Vector3.Lerp(TestTile.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             }
@@ -103,8 +73,31 @@ public class TileController : MonoBehaviour
         }
     }
 
-    void SpawnSmoke(Vector3 SmokeSpawnPosition)
+    private void MoveTile(bool moveUp)
     {
-        Instantiate(SmokeVfx, SmokeSpawnPosition, Quaternion.identity);
+        if (isMoving || HitTile == null) return;
+
+        isMoving = true;
+        TestTile = HitTile.gameObject;
+
+        targetScale = TestTile.transform.localScale;
+        targetPosition = TestTile.transform.position;
+
+        if (moveUp)
+        {
+            targetScale.z += 15;
+        }
+        else
+        {
+            targetScale.z -= 15;
+        }
+
+        targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
+        SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
+    }
+
+    private void SpawnSmoke(Vector3 position)
+    {
+        Instantiate(SmokeVfx, position, Quaternion.identity);
     }
 }

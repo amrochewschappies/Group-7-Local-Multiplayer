@@ -173,18 +173,18 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Join"",
+                    ""name"": ""TileUp"",
                     ""type"": ""Button"",
-                    ""id"": ""c62dd0e4-69ff-4112-afb4-1d0b4830e032"",
+                    ""id"": ""e018a047-e55c-453e-94bb-43d48c5fa4cf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveTile"",
+                    ""name"": ""TileDown"",
                     ""type"": ""Button"",
-                    ""id"": ""64b2a67c-9276-4a00-9560-d20dd31f4dd4"",
+                    ""id"": ""f6a3000b-7955-4a89-960b-95ad9c34d5f8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -535,45 +535,45 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1eac51ca-0304-4a0c-8bd2-afc806938b15"",
-                    ""path"": ""<Keyboard>/anyKey"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Gamepad"",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2b20e0c4-e341-496f-8eae-43cda83d0f8d"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad;Keyboard&Mouse"",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eab34676-4662-400d-a797-9811bdf21365"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""fdf17965-8f13-4f09-91dc-d74298be55d1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""MoveTile"",
+                    ""action"": ""TileUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8dd41822-5a09-4a72-818a-0de514e0eb77"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""5dbdecd4-2849-44b2-bc26-f30e87b4fa50"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""MoveTile"",
+                    ""groups"": """",
+                    ""action"": ""TileUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""595cf041-cda1-42d6-a300-a071b806dd16"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76972a31-9dfa-4c8d-8899-673efbdfd275"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -605,7 +605,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -614,7 +614,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
@@ -623,7 +623,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -650,7 +650,7 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -659,7 +659,25 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TileUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7bfa214-e3fb-4b3c-b16c-4b6f94b58f8d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TileDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""5492884b-0394-4993-b26a-23027002dd42"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -905,6 +923,50 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26bc47f7-d096-4a24-a3c3-80ab3fc68d30"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0beab5b7-e4a4-4c62-a9c4-632f75d2f806"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e0ce558-9eae-4ab2-ac24-c3360242810d"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa2689e9-193f-48e9-b834-0e87bd8fb5c9"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1600,8 +1662,8 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         m_Player1_Previous = m_Player1.FindAction("Previous", throwIfNotFound: true);
         m_Player1_Next = m_Player1.FindAction("Next", throwIfNotFound: true);
         m_Player1_Sprint = m_Player1.FindAction("Sprint", throwIfNotFound: true);
-        m_Player1_Join = m_Player1.FindAction("Join", throwIfNotFound: true);
-        m_Player1_MoveTile = m_Player1.FindAction("MoveTile", throwIfNotFound: true);
+        m_Player1_TileUp = m_Player1.FindAction("TileUp", throwIfNotFound: true);
+        m_Player1_TileDown = m_Player1.FindAction("TileDown", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
@@ -1613,6 +1675,8 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         m_Player2_Previous = m_Player2.FindAction("Previous", throwIfNotFound: true);
         m_Player2_Next = m_Player2.FindAction("Next", throwIfNotFound: true);
         m_Player2_Sprint = m_Player2.FindAction("Sprint", throwIfNotFound: true);
+        m_Player2_TileUp = m_Player2.FindAction("TileUp", throwIfNotFound: true);
+        m_Player2_TileDown = m_Player2.FindAction("TileDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1716,8 +1780,8 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_Previous;
     private readonly InputAction m_Player1_Next;
     private readonly InputAction m_Player1_Sprint;
-    private readonly InputAction m_Player1_Join;
-    private readonly InputAction m_Player1_MoveTile;
+    private readonly InputAction m_Player1_TileUp;
+    private readonly InputAction m_Player1_TileDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player1".
     /// </summary>
@@ -1766,13 +1830,13 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Player1_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "Player1/Join".
+        /// Provides access to the underlying input action "Player1/TileUp".
         /// </summary>
-        public InputAction @Join => m_Wrapper.m_Player1_Join;
+        public InputAction @TileUp => m_Wrapper.m_Player1_TileUp;
         /// <summary>
-        /// Provides access to the underlying input action "Player1/MoveTile".
+        /// Provides access to the underlying input action "Player1/TileDown".
         /// </summary>
-        public InputAction @MoveTile => m_Wrapper.m_Player1_MoveTile;
+        public InputAction @TileDown => m_Wrapper.m_Player1_TileDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1826,12 +1890,12 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @Join.started += instance.OnJoin;
-            @Join.performed += instance.OnJoin;
-            @Join.canceled += instance.OnJoin;
-            @MoveTile.started += instance.OnMoveTile;
-            @MoveTile.performed += instance.OnMoveTile;
-            @MoveTile.canceled += instance.OnMoveTile;
+            @TileUp.started += instance.OnTileUp;
+            @TileUp.performed += instance.OnTileUp;
+            @TileUp.canceled += instance.OnTileUp;
+            @TileDown.started += instance.OnTileDown;
+            @TileDown.performed += instance.OnTileDown;
+            @TileDown.canceled += instance.OnTileDown;
         }
 
         /// <summary>
@@ -1870,12 +1934,12 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @Join.started -= instance.OnJoin;
-            @Join.performed -= instance.OnJoin;
-            @Join.canceled -= instance.OnJoin;
-            @MoveTile.started -= instance.OnMoveTile;
-            @MoveTile.performed -= instance.OnMoveTile;
-            @MoveTile.canceled -= instance.OnMoveTile;
+            @TileUp.started -= instance.OnTileUp;
+            @TileUp.performed -= instance.OnTileUp;
+            @TileUp.canceled -= instance.OnTileUp;
+            @TileDown.started -= instance.OnTileDown;
+            @TileDown.performed -= instance.OnTileDown;
+            @TileDown.canceled -= instance.OnTileDown;
         }
 
         /// <summary>
@@ -1922,6 +1986,8 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2_Previous;
     private readonly InputAction m_Player2_Next;
     private readonly InputAction m_Player2_Sprint;
+    private readonly InputAction m_Player2_TileUp;
+    private readonly InputAction m_Player2_TileDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player2".
     /// </summary>
@@ -1969,6 +2035,14 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player2/Sprint".
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Player2_Sprint;
+        /// <summary>
+        /// Provides access to the underlying input action "Player2/TileUp".
+        /// </summary>
+        public InputAction @TileUp => m_Wrapper.m_Player2_TileUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Player2/TileDown".
+        /// </summary>
+        public InputAction @TileDown => m_Wrapper.m_Player2_TileDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2022,6 +2096,12 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @TileUp.started += instance.OnTileUp;
+            @TileUp.performed += instance.OnTileUp;
+            @TileUp.canceled += instance.OnTileUp;
+            @TileDown.started += instance.OnTileDown;
+            @TileDown.performed += instance.OnTileDown;
+            @TileDown.canceled += instance.OnTileDown;
         }
 
         /// <summary>
@@ -2060,6 +2140,12 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @TileUp.started -= instance.OnTileUp;
+            @TileUp.performed -= instance.OnTileUp;
+            @TileUp.canceled -= instance.OnTileUp;
+            @TileDown.started -= instance.OnTileDown;
+            @TileDown.performed -= instance.OnTileDown;
+            @TileDown.canceled -= instance.OnTileDown;
         }
 
         /// <summary>
@@ -2424,19 +2510,19 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Join" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "TileUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJoin(InputAction.CallbackContext context);
+        void OnTileUp(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "MoveTile" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "TileDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMoveTile(InputAction.CallbackContext context);
+        void OnTileDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player2" which allows adding and removing callbacks.
@@ -2508,6 +2594,20 @@ public partial class @PlayerInputManager: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TileUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTileUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TileDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTileDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

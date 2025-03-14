@@ -9,9 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement settings")]
     //move
-    [SerializeField]
-    [Range(0f, 15f)]
-    private float moveSpeed = 5f;
+    [SerializeField] [Range(0f, 15f)] private float moveSpeed = 5f;
 
     //jump
     [SerializeField] [Range(0f, 20f)] private float jumpForce = 5f;
@@ -27,9 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0f, 15f)] private float mouseSensitivity = 2f;
     [SerializeField] [Range(0f, 25f)] private float controllerSensitivityX = 15f;
     [SerializeField] [Range(0f, 25f)] private float controllerSensitivityY = 15f;
-    
+
     //deadzone
-    [SerializeField][Range(0f, 1f)] private float controllerDeadzone = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float controllerDeadzone = 0.5f;
 
     #endregion
 
@@ -64,21 +62,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        //when player moves
-        //note:listen for each action when performed reads vector and when canceled vector 2 is zero, must stop movement
+        // Determine if the input device is a mouse or controller
+        isMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
+        isController = playerInput.currentControlScheme == "Gamepad";
+
+        // Handle player movement
         playerInput.actions["Move"].performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         playerInput.actions["Move"].canceled += ctx => moveInput = Vector2.zero;
-        //player look
+
+        // Handle player look
         playerInput.actions["Look"].performed += ctx => lookInput = ctx.ReadValue<Vector2>();
         playerInput.actions["Look"].canceled += ctx => lookInput = Vector2.zero;
-        //player jump
-        playerInput.actions["Jump"].performed += ctx => jumpInput = true;
-        
-        
-        //move tile
-        //playerInput.actions["MoveTile"].performed += ctx => moveTile = ctx.ReadValue<Vector3>();
-        //playerInput.actions["MoveTile"].canceled += ctx => moveTile = Vector3.zero;
 
+        // Handle player jump
+        playerInput.actions["Jump"].performed += ctx => jumpInput = true;
     }
 
     private void FixedUpdate()
@@ -86,14 +83,12 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
         HandleLook();
-        MoveTile();
         ApplyGravity();
     }
 
-    //use lateUpdate() - to process the camera movement after player has moved
+    // Use LateUpdate() to process the camera movement after player has moved
     private void LateUpdate()
     {
-
     }
 
     [ContextMenu("HandleMovement")]
@@ -104,57 +99,48 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
     }
 
-
-
-    private float xRotation = 0f; // Stores current vertical rotation (prevents flipping)
-
+    private float xRotation = 0f;
     private void HandleLook()
     {
-        float lookX = lookInput.x;
-        float lookY = lookInput.y;
-
         if (isMouse)
         {
-            float sensitivityX = mouseSensitivity * 0.5f;
-            float sensitivityY = mouseSensitivity * 0.5f;
-
-            lookX *= sensitivityX;
-            lookY *= sensitivityY;
-
-         
-            transform.Rotate(Vector3.up * lookX);
-
-     
-            xRotation -= lookY;
-            xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-            
-            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            HandleMouseLook();
         }
-        else
+        else if (isController)
         {
-            float sensitivityX = controllerSensitivityX;
-            float sensitivityY = controllerSensitivityY;
-
-    
-            if (Mathf.Abs(lookX) < controllerDeadzone) lookX = 0;
-            if (Mathf.Abs(lookY) < controllerDeadzone) lookY = 0;
-
-            lookX *= sensitivityX;
-            lookY *= sensitivityY;
-            
-            Quaternion horizontalRotation = Quaternion.Euler(0f, lookX, 0f);
-            transform.rotation *= horizontalRotation;
-
-            float newRotationX = cameraTransform.localEulerAngles.x - lookY;
-            if (newRotationX > 180) newRotationX -= 360;
-            newRotationX = Mathf.Clamp(newRotationX, -80f, 80f);
-
-            Quaternion verticalRotation = Quaternion.Euler(newRotationX, 0f, 0f);
-            cameraTransform.localRotation = Quaternion.Slerp(cameraTransform.localRotation, verticalRotation, Time.deltaTime * 10f);
+            HandleControllerLook();
         }
     }
 
+    private void HandleMouseLook()
+    {
+        float lookX = lookInput.x * mouseSensitivity * Time.deltaTime;
+        float lookY = lookInput.y * mouseSensitivity * Time.deltaTime;
 
+        transform.Rotate(Vector3.up * lookX);
+
+        xRotation -= lookY;
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    private void HandleControllerLook()
+    {
+        float controllerLookX = lookInput.x * controllerSensitivityX;
+        float controllerLookY = lookInput.y * controllerSensitivityY;
+
+        // Deadzone to prevent very small movements from affecting look direction
+        if (Mathf.Abs(lookInput.x) < controllerDeadzone) controllerLookX = 0;
+        if (Mathf.Abs(lookInput.y) < controllerDeadzone) controllerLookY = 0;
+
+        transform.Rotate(Vector3.up * controllerLookX);
+
+        xRotation -= controllerLookY;
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
 
     private void HandleJump()
     {
@@ -162,18 +148,17 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            if (wasInAir) 
+            if (wasInAir)
             {
-                StartCoroutine(TriggerRumble(0.2f, 0.7f, 0.175f)); 
-              
+                StartCoroutine(TriggerRumble(0.2f, 0.7f, 0.175f)); // Trigger rumble on landing
             }
             coyoteTimeCounter = coyoteTime;
-            wasInAir = false; // Reset after landing
+            wasInAir = false;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            wasInAir = true; // Player is in the air
+            wasInAir = true;
         }
 
         if (jumpInput)
@@ -194,40 +179,29 @@ public class PlayerController : MonoBehaviour
         jumpInput = false;
     }
 
-
     private void ApplyGravity()
     {
         if (!isGrounded)
         {
-            if (rb.linearVelocity.y > 0 && !jumpInput) 
+            if (rb.linearVelocity.y > 0 && !jumpInput)
             {
-                rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime; // stronger grav pull when releasing jump early
+                rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
             else
             {
-             
-                rb.linearVelocity += Vector3.up * Physics.gravity.y * (gravityMultiplier - 1) * Time.deltaTime; // apply higher gravity scale if player ever falls faster
+                rb.linearVelocity += Vector3.up * Physics.gravity.y * (gravityMultiplier - 1) * Time.deltaTime;
             }
         }
-
     }
+
     private IEnumerator TriggerRumble(float lowFrequency, float highFrequency, float duration)
     {
         Gamepad gamepad = Gamepad.current;
         if (gamepad != null)
         {
-            //use gamepad motor speeds and adjust where, needed 
-            //this routine should start and stop the gamepad motors 
             gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
             yield return new WaitForSeconds(duration);
-            gamepad.SetMotorSpeeds(0, 0); 
+            gamepad.SetMotorSpeeds(0, 0);
         }
     }
-
-    void MoveTile()
-    {
-                
-    }
-
 }
- 
