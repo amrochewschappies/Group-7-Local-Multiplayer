@@ -26,6 +26,7 @@ public class TileController : MonoBehaviour
 
     public GameObject SmokeVfx;
 
+    public GameObject ActiveTile;
 
     private void Start()
     {
@@ -68,15 +69,27 @@ public class TileController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.C) && !isMoving)  
+        if (Input.GetKey(KeyCode.C) && !isMoving)
         {
-            isMoving = true;
-            TestTile = HitTile.gameObject;
-            targetScale = TestTile.transform.localScale;
-            targetPosition = TestTile.transform.position;
-            targetScale.z = TestTile.transform.localScale.z + 15;
-            targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-            SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
+            if (HitTile.gameObject != null)
+            {
+                TestTile = HitTile.gameObject;
+
+            }
+
+            if (TestTile != null && ActiveTile != TestTile)
+            {
+                isMoving = true;
+                targetScale = TestTile.transform.localScale;
+                targetPosition = TestTile.transform.position;
+                targetScale.z = TestTile.transform.localScale.z + 15;
+                targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
+                SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
+            }
+            else
+            {
+                Debug.Log("you cannot move a tile you're on");
+            }
         }
         
         if (Input.GetKey(KeyCode.V) && !isMoving)  
@@ -109,5 +122,21 @@ public class TileController : MonoBehaviour
     void SpawnSmoke(Vector3 SmokeSpawnPosition)
     {
         Instantiate(SmokeVfx, SmokeSpawnPosition, Quaternion.identity);
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            ActiveTile = col.gameObject;
+        }
+    }
+
+    void OnCollisionLeave(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            ActiveTile = null;
+        }
     }
 }
