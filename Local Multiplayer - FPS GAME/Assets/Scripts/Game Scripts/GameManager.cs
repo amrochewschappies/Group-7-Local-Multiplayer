@@ -4,8 +4,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class GameManger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public static GameManager gmInstance { get; private set; }
+
+    private void Awake()
+    {
+        if (gmInstance != null && gmInstance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            gmInstance = this;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     //GM checks winner
     //GM checks loser
     //GM checks player Deaths
@@ -46,9 +61,19 @@ public class GameManger : MonoBehaviour
     
     public void CheckDeath(GameObject player)
     {
-        // when hitting lava        
-        // show losetext then end scene
-        // //make sure that the end scene is loaded here
+        if(hasDied) return;
+        hasDied = true;
+        if (player == player1)
+        {
+            StartCoroutine(showText());
+            StartCoroutine(TextAnimation(player1text, Color.green, Color.blue));
+        }else if (player == player2)
+        {
+            Debug.Log(player);
+            StartCoroutine(showText());
+            Debug.Log("Player 1 text working.");
+            StartCoroutine(TextAnimation(player2text,Color.red, Color.magenta));
+        }
     }
     
     public void LoadStartScene()
@@ -70,10 +95,46 @@ public class GameManger : MonoBehaviour
     {
         Application.Quit();
     }
+    IEnumerator TextAnimation(TextMeshProUGUI textElement, Color color1, Color color2)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            textElement.color = color1;
+            yield return new WaitForSeconds(0.5f);  
+            textElement.color = color2;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 
-    IEnumerator waitBeforeLoading()
+    public IEnumerator waitBeforeLoading()
     {
         yield return new WaitForSeconds(2f);
         LoadEndScene();
+    }
+
+    private IEnumerator showText()
+    {
+        if (hasWon)
+        {
+            player1text.text = "You won!";
+        }
+
+        if (hasDied)
+        {
+            player1text.text = "You touched the magma, you lost!";
+        }
+   
+        yield return new WaitForSeconds(0.5f);
+
+        if (hasWon)
+        {
+            player2text.text = "You lost";       
+        }
+
+        if (hasDied)
+        {
+            player2text.text = "You win , player 1 touched the magma.";         
+        }
+
     }
 }

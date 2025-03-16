@@ -51,9 +51,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool wasInAir = false;
     public LayerMask groundLayer;
     public Transform groundCheck;
-
     #endregion
 
+    public AudioClip jumpSound;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CoinTrigger : MonoBehaviour
 {
-    private GameManger _gameManger;
+    private GameManager _gameManger;
 
     private void Start()
     {
-        _gameManger = GameObject.Find("======GameManager=====").GetComponent<GameManger>();
+        _gameManger = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +18,7 @@ public class CoinTrigger : MonoBehaviour
         {
             GameObject hitInfo = other.gameObject;
             _gameManger.CheckWinner(hitInfo);
+            _gameManger.waitBeforeLoading();
             StartCoroutine(deleteCrown());
         }
     }
