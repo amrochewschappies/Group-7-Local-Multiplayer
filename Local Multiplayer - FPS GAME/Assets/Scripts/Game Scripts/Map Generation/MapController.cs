@@ -19,7 +19,7 @@ public class MapController : MonoBehaviour
 
     public void GenerateMap()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 45; i++)
         {
             int randomTile = Random.Range(0, Tiles.Length);
             int randomNumber = Random.Range(1, 4) * 10;
