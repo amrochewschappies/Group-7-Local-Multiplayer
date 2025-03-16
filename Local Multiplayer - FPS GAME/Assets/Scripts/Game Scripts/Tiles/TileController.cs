@@ -26,6 +26,8 @@ public class TileController : MonoBehaviour
     private Color originalColor;
     private bool isHovering = false;
 
+    public GameObject ActiveTile;
+
     private void Start()
     {
         // Subscribe to input actions
@@ -103,5 +105,21 @@ public class TileController : MonoBehaviour
     private void SpawnSmoke(Vector3 position)
     {
         Instantiate(SmokeVfx, position, Quaternion.identity);
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            ActiveTile = col.gameObject;
+        }
+    }
+
+    void OnCollisionLeave(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            ActiveTile = null;
+        }
     }
 }
