@@ -36,8 +36,11 @@ public class GameManager : MonoBehaviour
     [Header("LiveGame Checks")]
     public bool hasWon = false;
     public bool hasDied = false;
-    
-    
+
+    private void Start()
+    {
+        AudioManager.Instance.PlaySound("Announcer- Track1" , 1 , 0.3f);
+    }
 
     public void CheckWinner(GameObject player)
     {

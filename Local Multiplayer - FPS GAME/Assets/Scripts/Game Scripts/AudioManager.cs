@@ -1,50 +1,92 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    //audio manager is a singleton
-    public static AudioManager instance { get; private set; }
-    
+    public static AudioManager Instance { get; private set; }
+    [SerializeField] private AudioSource player1Source;
+    [SerializeField] private AudioSource player2Source;
+
+    [SerializeField] private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
+
     private void Awake()
     {
-        if (instance != null && instance != this)
+        // Singleton pattern
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
-    // we need an audio source to hear the audio from = audiosource
-    // we need a place to store all audios 
-    // audios need to be accessible by index & assigned to the audio source
-    // volume of all the clips
 
-
-    private AudioSource player1Source;
-    private AudioSource player2Source;
-    private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
     private void Start()
     {
-        player1Source = GameObject.Find("player1Camera").GetComponent<AudioSource>();
-        player2Source = GameObject.Find("player2Camera").GetComponent<AudioSource>();
-        foreach (AudioClip clip in Resources.LoadAll<AudioClip>("Audio"))
+      
+        AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
+        
+        foreach (AudioClip clip in clips)
         {
             soundLibrary[clip.name] = clip;
+            Debug.Log($"Loaded audio clip: {clip.name}");
+        }
+        
+        if (player1Source == null)
+        {
+            Debug.LogError("Player 1 AudioSource is not assigned!");
+        }
+        if (player2Source == null)
+        {
+            Debug.LogError("Player 2 AudioSource is not assigned!");
+        }
+        
+    }
+
+    public void PlaySound(string clipName, int playerNumber, float volume)
+    {
+        if (soundLibrary.TryGetValue(clipName, out AudioClip clip))
+        {
+            AudioSource targetSource = playerNumber == 1 ? player1Source : player2Source;
+
+            if (targetSource != null)
+            {
+                targetSource.clip = clip;
+                targetSource.volume = volume;
+                targetSource.Play();
+            }
+            else
+            {
+                Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"AudioClip with name {clipName} not found in sound library.");
         }
     }
 
-    public void PlaySound(AudioClip clip, float vol, float pitch )
+    /// <summary>
+    /// Stops the sound for a specific player.
+    /// </summary>
+    /// <param name="playerNumber">Player number (1 or 2).</param>
+    public void StopSound(int playerNumber)
     {
-        //    
-    }
+        AudioSource targetSource = playerNumber == 1 ? player1Source : player2Source;
 
-    public void StopSound()
-    {
-        //  
+        if (targetSource != null)
+        {
+            targetSource.Stop();
+        }
+        else
+        {
+            Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
+        }
     }
+    
+
 }
