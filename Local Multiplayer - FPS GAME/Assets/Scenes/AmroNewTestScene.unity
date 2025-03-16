@@ -988,36 +988,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 160aa6681662d1e439840995f85c9622, type: 3}
   m_PrefabInstance: {fileID: 43093969}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &322807589 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5696387946942395372, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
-  m_PrefabInstance: {fileID: 1034322779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &322807590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6374130074712043674, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
   m_PrefabInstance: {fileID: 1034322779}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &322807591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322807589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867aceff82f2bf14c8906272f51d9de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TestTile: {fileID: 0}
-  moveSpeed: 5
-  countdown: 2
-  raycastDistance: 2
-  HoverMaterial: {fileID: 2100000, guid: 5eee5d891d0634f49aabee3c401c6689, type: 2}
-  StandardMaterial: {fileID: 2100000, guid: 1598c4db83ffdb24f882bf62e871343f, type: 2}
-  Camera: {fileID: 542313944}
-  SmokeVfx: {fileID: 3496496029925515223, guid: 10165f8e27d3a8d44b82428cbeb49bef, type: 3}
 --- !u!1 &326121982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,11 +1858,6 @@ Rigidbody:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 160aa6681662d1e439840995f85c9622, type: 3}
   m_PrefabInstance: {fileID: 546995359}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &542313944 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 971170220997616594, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
-  m_PrefabInstance: {fileID: 1034322779}
   m_PrefabAsset: {fileID: 0}
 --- !u!20 &542313945 stripped
 Camera:
@@ -3990,15 +3960,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1745617640}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6927758382216162841, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1062162780}
     - targetCorrespondingSourceObject: {fileID: 1735325869863473504, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1180554385}
-    - targetCorrespondingSourceObject: {fileID: 5696387946942395372, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 322807591}
   m_SourcePrefab: {fileID: 100100000, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
 --- !u!1001 &1039094506
 PrefabInstance:
@@ -4215,36 +4179,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044255926}
   m_CullTransparentMesh: 1
---- !u!1 &1062162778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6927758382216162841, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
-  m_PrefabInstance: {fileID: 1034322779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1062162779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3506606403262519534, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
   m_PrefabInstance: {fileID: 1034322779}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1062162780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062162778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867aceff82f2bf14c8906272f51d9de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TestTile: {fileID: 0}
-  moveSpeed: 5
-  countdown: 2
-  raycastDistance: 2
-  HoverMaterial: {fileID: 2100000, guid: eff59503a9434cc4f9b51efc443b205e, type: 2}
-  StandardMaterial: {fileID: 2100000, guid: 1598c4db83ffdb24f882bf62e871343f, type: 2}
-  Camera: {fileID: 1180554383}
-  SmokeVfx: {fileID: 3496496029925515223, guid: 10165f8e27d3a8d44b82428cbeb49bef, type: 3}
 --- !u!1 &1080284969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 160aa6681662d1e439840995f85c9622, type: 3}
@@ -5291,7 +5230,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376249036}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1376249040
 Camera:
   m_ObjectHideFlags: 0
@@ -7487,7 +7426,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777254595}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1777254598
 Camera:
   m_ObjectHideFlags: 0

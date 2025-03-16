@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TileController : MonoBehaviour
 {
-    public GameObject TestTile;
+    public GameObject SelectedTile;
     public float moveSpeed = 5f;
 
     private Vector3 targetScale;
@@ -42,24 +42,30 @@ public class TileController : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red);
 
-        if (Physics.Raycast(ray, out hit, raycastDistance))
+        if (!isMoving)
         {
-            if (hit.collider.gameObject.CompareTag("Ground"))
+            if (Physics.Raycast(ray, out hit, raycastDistance))
             {
-                HitTile = hit.collider.gameObject.GetComponent<MeshRenderer>();
-
-                if (HitTile != PrevHitObject)
+                if (hit.collider.gameObject.CompareTag("Ground"))
                 {
-                    HitTile.material = HoverMaterial;
-                    if (PrevHitObject != null) PrevHitObject.material = StandardMaterial;
-                    PrevHitObject = HitTile;
+                    HitTile = hit.collider.gameObject.GetComponent<MeshRenderer>();
+
+                    SelectedTile = HitTile.gameObject;
+
+                    if (HitTile != PrevHitObject)
+                    {
+                        HitTile.material = HoverMaterial;
+                        if (PrevHitObject != null) PrevHitObject.material = StandardMaterial;
+                        PrevHitObject = HitTile;
+                    }
+                }
+                else if (PrevHitObject != null)
+                {
+                    PrevHitObject.material = StandardMaterial;
+                    PrevHitObject = null;
                 }
             }
-            else if (PrevHitObject != null)
-            {
-                PrevHitObject.material = StandardMaterial;
-                PrevHitObject = null;
-            }
+
         }
         
         if (isMoving)
@@ -67,8 +73,8 @@ public class TileController : MonoBehaviour
             if (countdown > 0)
             {
                 countdown -= Time.deltaTime;
-                TestTile.transform.localScale = Vector3.Lerp(TestTile.transform.localScale, targetScale, moveSpeed * Time.deltaTime);
-                TestTile.transform.position = Vector3.Lerp(TestTile.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                SelectedTile.transform.localScale = Vector3.Lerp(SelectedTile.transform.localScale, targetScale, moveSpeed * Time.deltaTime);
+                SelectedTile.transform.position = Vector3.Lerp(SelectedTile.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             }
             else
             {
@@ -81,25 +87,33 @@ public class TileController : MonoBehaviour
 
     private void MoveTile(bool moveUp)
     {
-        if (isMoving || HitTile == null) return;
-
-        isMoving = true;
-        TestTile = HitTile.gameObject;
-
-        targetScale = TestTile.transform.localScale;
-        targetPosition = TestTile.transform.position;
-
-        if (moveUp)
+        if (ActiveTile != SelectedTile)
         {
-            targetScale.z += 15;
+            if (isMoving || HitTile == null) return;
+
+            isMoving = true;
+            SelectedTile = HitTile.gameObject;
+
+            targetScale = SelectedTile.transform.localScale;
+            targetPosition = SelectedTile.transform.position;
+
+            if (moveUp)
+            {
+                targetScale.z += 15;
+            }
+            else
+            {
+                targetScale.z -= 15;
+            }
+
+            targetPosition = new Vector3(SelectedTile.transform.position.x, targetScale.z * 0.0397325f, SelectedTile.transform.position.z);
+            SpawnSmoke(new Vector3(SelectedTile.transform.position.x, 0, SelectedTile.transform.position.z));
         }
         else
         {
-            targetScale.z -= 15;
+            Debug.Log("You cannot move the tile you're on");
         }
-
-        targetPosition = new Vector3(TestTile.transform.position.x, targetScale.z * 0.0397325f, TestTile.transform.position.z);
-        SpawnSmoke(new Vector3(TestTile.transform.position.x, 0, TestTile.transform.position.z));
+            
     }
 
     private void SpawnSmoke(Vector3 position)
