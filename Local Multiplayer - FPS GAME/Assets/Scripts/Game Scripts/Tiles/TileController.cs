@@ -28,6 +28,8 @@ public class TileController : MonoBehaviour
 
     public GameObject ActiveTile;
 
+    public Animator PlayerAnimator;
+
     private void Start()
     {
         // Subscribe to input actions
@@ -80,6 +82,8 @@ public class TileController : MonoBehaviour
             {
                 isMoving = false;
                 countdown = 2f;
+                PlayerAnimator.SetBool("IsLifting", false);
+                PlayerAnimator.SetBool("IsLowering", false);
             }
         }
     }
@@ -100,10 +104,12 @@ public class TileController : MonoBehaviour
             if (moveUp)
             {
                 targetScale.z += 15;
+                PlayerAnimator.SetBool("IsLifting", true);
             }
             else
             {
                 targetScale.z -= 15;
+                PlayerAnimator.SetBool("IsLowering", true);
             }
 
             targetPosition = new Vector3(SelectedTile.transform.position.x, targetScale.z * 0.0397325f, SelectedTile.transform.position.z);

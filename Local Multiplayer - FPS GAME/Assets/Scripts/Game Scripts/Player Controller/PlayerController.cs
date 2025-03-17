@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool wasInAir = false;
     public LayerMask groundLayer;
     public Transform groundCheck;
+    public Animator PlayerAnimator;
     #endregion
 
     public AudioClip jumpSound;
@@ -97,6 +98,14 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         move *= moveSpeed;
         rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        bool isRunning = moveInput.magnitude > 0; // If there is movement input
+        PlayerAnimator.SetBool("IsRunning", isRunning);
+
+        if (isRunning)
+        {
+            PlayerAnimator.SetBool("IsLifting", false);
+            PlayerAnimator.SetBool("IsLowering", false);
+        }
     }
 
     private float xRotation = 0f;
@@ -153,6 +162,7 @@ public class PlayerController : MonoBehaviour
             }
             coyoteTimeCounter = coyoteTime;
             wasInAir = false;
+            PlayerAnimator.SetBool("IsJumping", false);
         }
         else
         {
@@ -162,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpInput)
         {
+            PlayerAnimator.SetBool("IsJumping", true);
             jumpBufferCounter = jumpBufferTime;
         }
         else
