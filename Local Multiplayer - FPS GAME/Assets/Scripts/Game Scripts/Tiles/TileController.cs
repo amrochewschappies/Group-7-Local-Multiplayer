@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class TileController : MonoBehaviour
 {
@@ -82,8 +83,6 @@ public class TileController : MonoBehaviour
             {
                 isMoving = false;
                 countdown = 2f;
-                PlayerAnimator.SetBool("IsLifting", false);
-                PlayerAnimator.SetBool("IsLowering", false);
             }
         }
     }
@@ -105,11 +104,13 @@ public class TileController : MonoBehaviour
             {
                 targetScale.z += 15;
                 PlayerAnimator.SetBool("IsLifting", true);
+                StartCoroutine(AnimationStop(0.5f));
             }
             else
             {
                 targetScale.z -= 15;
                 PlayerAnimator.SetBool("IsLowering", true);
+                StartCoroutine(AnimationStop(0.5f));
             }
 
             targetPosition = new Vector3(SelectedTile.transform.position.x, targetScale.z * 0.0397325f, SelectedTile.transform.position.z);
@@ -120,6 +121,13 @@ public class TileController : MonoBehaviour
             Debug.Log("You cannot move the tile you're on");
         }
             
+    }
+
+    IEnumerator AnimationStop(float Seconds)
+    {
+        yield return new WaitForSeconds(Seconds);
+        PlayerAnimator.SetBool("IsLifting", false);
+        PlayerAnimator.SetBool("IsLowering", false);
     }
 
     private void SpawnSmoke(Vector3 position)
