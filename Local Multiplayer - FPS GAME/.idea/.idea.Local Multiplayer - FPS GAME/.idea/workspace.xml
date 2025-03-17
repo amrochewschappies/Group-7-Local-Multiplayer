@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dfd7d4f-ab33-4597-a658-807ac6ed25ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Local Multiplayer - FPS GAME/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Local Multiplayer - FPS GAME/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Local Multiplayer - FPS GAME/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Local Multiplayer - FPS GAME/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/GameAssets/Lava/Glow Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/GameAssets/Lava/Glow Material.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DanzoTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DanzoTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +129,7 @@
       <workItem from="1742159938323" duration="2573000" />
       <workItem from="1742212025616" duration="39000" />
       <workItem from="1742213345351" duration="19000" />
+      <workItem from="1742232356655" duration="7000" />
     </task>
     <servers />
   </component>
