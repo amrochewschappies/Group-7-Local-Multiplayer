@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
     //GM checks player Deaths
     //GM assits with pause sequence 
     //GM assists with audio queues
-    [Header("References")]
-    public TextMeshProUGUI player1text;
-    public TextMeshProUGUI player2text;
+    [Header("References")] 
+    public PlayerController _player1;
+    public PlayerController _player2;
+    
     
     public GameObject player1;
     public GameObject player2;
@@ -36,27 +37,48 @@ public class GameManager : MonoBehaviour
     [Header("LiveGame Checks")]
     public bool hasWon = false;
     public bool hasDied = false;
-
+    [SerializeField]private float timer = 0f; 
+    [SerializeField]private int currentTime = 0; 
+    
+    
     private void Start()
     {
-        AudioManager.Instance.PlaySound("Announcer- Track1" , 1 , 0.3f);
+        currentTime = 0;
+        _player1.enabled = false;
+        _player2.enabled = false;
     }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= 1f)
+        {
+            IncrementTimer(1);
+            timer = 0f; 
+        }
+    }
+
+    void IncrementTimer(int incrementAmount)
+    {
+        currentTime += incrementAmount;
+    }
+    
+    //Event functions
+    
+    //win conditions
     public void CheckWinner(GameObject player)
     {
         if (hasWon) return;
         
         hasWon = true;
         if (player == player1)
-        {
-            player1text.text = " You won!"; 
-            player2text.text = " GAME OVER, you lost!"; 
+        {   
+            //make camera move to player 1
             StartCoroutine(waitBeforeLoading());
         }
         else if (player == player2)
         {
-            player1text.text = " GAME OVER, you lost! "; 
-            player2text.text = " You won!";
+
             StartCoroutine(waitBeforeLoading());
 
         }
@@ -68,17 +90,17 @@ public class GameManager : MonoBehaviour
         hasDied = true;
         if (player == player1)
         {
-            StartCoroutine(showText());
-            StartCoroutine(TextAnimation(player1text, Color.green, Color.blue));
+            
+
         }else if (player == player2)
         {
-            Debug.Log(player);
-            StartCoroutine(showText());
-            Debug.Log("Player 1 text working.");
-            StartCoroutine(TextAnimation(player2text,Color.red, Color.magenta));
+
+
         }
     }
     
+    
+    //scenes
     public void LoadStartScene()
     {
         SceneManager.LoadScene("StartScene");
@@ -98,46 +120,12 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    IEnumerator TextAnimation(TextMeshProUGUI textElement, Color color1, Color color2)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            textElement.color = color1;
-            yield return new WaitForSeconds(0.5f);  
-            textElement.color = color2;
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+
 
     public IEnumerator waitBeforeLoading()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(15f);
         LoadEndScene();
     }
-
-    private IEnumerator showText()
-    {
-        if (hasWon)
-        {
-            player1text.text = "You won!";
-        }
-
-        if (hasDied)
-        {
-            player1text.text = "You touched the magma, you lost!";
-        }
-   
-        yield return new WaitForSeconds(0.5f);
-
-        if (hasWon)
-        {
-            player2text.text = "You lost";       
-        }
-
-        if (hasDied)
-        {
-            player2text.text = "You win , player 1 touched the magma.";         
-        }
-
-    }
+    
 }

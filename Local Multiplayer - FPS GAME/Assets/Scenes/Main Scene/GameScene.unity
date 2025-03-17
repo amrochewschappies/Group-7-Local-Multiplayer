@@ -2211,6 +2211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b61685e5e4dfdb46b530c98a54c3d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1Source: {fileID: 0}
+  player2Source: {fileID: 0}
 --- !u!4 &188342047
 Transform:
   m_ObjectHideFlags: 0
@@ -4945,7 +4947,7 @@ MonoBehaviour:
         z: 3.226638
       Rotation:
         value:
-          x: 0.5659135
+          x: 0.5659136
           y: -0.5194968
           z: 0.56697154
           w: -0.29733515
@@ -17060,7 +17062,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -6.79, z: 8.93}
-  m_LocalScale: {x: 55.2, y: 59.3, z: 1}
+  m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -18866,6 +18868,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2626066761932005569, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626066761932005569, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3125538178525244748, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_Name
       value: Crosshair
@@ -18897,6 +18907,14 @@ PrefabInstance:
     - target: {fileID: 6986976229852293928, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_Name
       value: PlayerName
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510401615715308442, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510401615715308442, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8597343840575670772, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_Depth

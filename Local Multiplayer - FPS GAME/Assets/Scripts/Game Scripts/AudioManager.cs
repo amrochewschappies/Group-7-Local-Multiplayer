@@ -70,10 +70,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Stops the sound for a specific player.
-    /// </summary>
-    /// <param name="playerNumber">Player number (1 or 2).</param>
+
     public void StopSound(int playerNumber)
     {
         AudioSource targetSource = playerNumber == 1 ? player1Source : player2Source;

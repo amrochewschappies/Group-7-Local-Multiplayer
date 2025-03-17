@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement settings")]
     //move
-    [SerializeField] [Range(0f, 15f)] private float moveSpeed = 5f;
+    [SerializeField] [Range(0f, 15f)] private float moveSpeed = 0f;
 
     //jump
     [SerializeField] [Range(0f, 20f)] private float jumpForce = 5f;
