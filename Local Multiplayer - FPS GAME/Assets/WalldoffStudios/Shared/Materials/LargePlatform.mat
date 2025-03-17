@@ -31,3 +31,4 @@ Material:
     - _ColorA: {r: 0.33041117, g: 0.6225696, b: 0.7075472, a: 0}
     - _ColorB: {r: 0.09019608, g: 0.2509804, b: 0.32156864, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
