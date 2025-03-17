@@ -56,14 +56,24 @@ public class GameManager : MonoBehaviour
             IncrementTimer(1);
             timer = 0f; 
         }
-    }
 
+        if (timer <= 8.5f)
+        {
+            ActivatePlayersMovement();    
+        }
+    }
+    
     void IncrementTimer(int incrementAmount)
     {
         currentTime += incrementAmount;
     }
     
-    //Event functions
+    //Timed Event functions
+    void ActivatePlayersMovement()
+    {
+        _player1.enabled = true;
+        _player2.enabled = true;
+    }
     
     //win conditions
     public void CheckWinner(GameObject player)
