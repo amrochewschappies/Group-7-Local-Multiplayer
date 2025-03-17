@@ -1779,8 +1779,8 @@ MonoBehaviour:
         z: 3.226638
       Rotation:
         value:
-          x: 0.5659136
-          y: -0.5194968
+          x: 0.56591356
+          y: -0.51949674
           z: 0.56697154
           w: -0.29733515
     - Position:
@@ -19733,6 +19733,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dd1ccb1f260f2074b9f71125b9273dab, type: 3}
       propertyPath: m_Name
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd1ccb1f260f2074b9f71125b9273dab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2932252872867271492, guid: dd1ccb1f260f2074b9f71125b9273dab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
