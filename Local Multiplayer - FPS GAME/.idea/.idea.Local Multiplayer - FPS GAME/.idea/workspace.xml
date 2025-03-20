@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dfd7d4f-ab33-4597-a658-807ac6ed25ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/GameAssets/Lava/Glow Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/GameAssets/Lava/Glow Material.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DanzoTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DanzoTestScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,6 +129,7 @@
       <workItem from="1742212025616" duration="39000" />
       <workItem from="1742213345351" duration="19000" />
       <workItem from="1742232356655" duration="7000" />
+      <workItem from="1742460090973" duration="6000" />
     </task>
     <servers />
   </component>
