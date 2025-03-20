@@ -10659,7 +10659,7 @@ MonoBehaviour:
         z: 3.226638
       Rotation:
         value:
-          x: 0.5659136
+          x: 0.5659135
           y: -0.5194968
           z: 0.56697154
           w: -0.29733515
@@ -15021,6 +15021,7 @@ MonoBehaviour:
   - {fileID: 1210813448}
   - {fileID: 967734422}
   - {fileID: 1837938215}
+  SmokeVfx: {fileID: 3496496029925515223, guid: 831dff6802f6b7540aea45a250fba0cb, type: 3}
 --- !u!4 &1569214288
 Transform:
   m_ObjectHideFlags: 0
