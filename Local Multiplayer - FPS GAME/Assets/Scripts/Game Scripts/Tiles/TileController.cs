@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TileController : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class TileController : MonoBehaviour
     public GameObject ActiveTile;
 
     public Animator PlayerAnimator;
+
+    public Slider CooldownSlider;
 
     private void Start()
     {
@@ -73,6 +76,8 @@ public class TileController : MonoBehaviour
         
         if (isMoving)
         {
+            CooldownSlider.gameObject.active = true;
+            CooldownSlider.value = countdown;
             if (countdown > 0)
             {
                 countdown -= Time.deltaTime;
@@ -83,6 +88,7 @@ public class TileController : MonoBehaviour
             {
                 isMoving = false;
                 countdown = 2f;
+                CooldownSlider.gameObject.active = false;
             }
         }
     }
