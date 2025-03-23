@@ -4839,7 +4839,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -11158,13 +11158,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crosshair
       objectReference: {fileID: 0}
+    - target: {fileID: 5723317913427904421, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6986976229852293928, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_Name
       value: PlayerName
       objectReference: {fileID: 0}
+    - target: {fileID: 7178112932066412095, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8597343840575670772, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_Depth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905067702785299911, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063779384884278448, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4796966608723274234, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
@@ -16366,7 +16382,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
