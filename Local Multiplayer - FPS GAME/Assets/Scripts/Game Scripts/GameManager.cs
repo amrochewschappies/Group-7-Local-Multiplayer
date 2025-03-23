@@ -71,19 +71,19 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void IncrementTimer(int incrementAmount)
+    public void IncrementTimer(int incrementAmount)
     {
         currentTime += incrementAmount;
     }
     
     //Timed Event functions
-    void ActivatePlayersMovement()
+    public void ActivatePlayersMovement()
     {
         _player1.enabled = true;
         _player2.enabled = true;
     }
     
-    void DeactivatePlayersMovement()
+    public void DeactivatePlayersMovement()
     {
         _player1.enabled = false;
         _player2.enabled = false;
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-            StartCoroutine(waitBeforeLoading());
+           // StartCoroutine(smInstance.waitBeforeLoading());
         }
         else if (player == player2)
         {
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-            StartCoroutine(waitBeforeLoading());
+           // StartCoroutine(waitBeforeLoading());
 
         }
     }
@@ -143,35 +143,6 @@ public class GameManager : MonoBehaviour
     }
     
     
-    //scenes
-    public void LoadStartScene()
-    {
-        SceneManager.LoadScene("StartScene");
-    }
-    
-    public void LoadMainScene()
-    {
-        DeactivatePlayersMovement();
-        SceneManager.LoadScene("GameScene");
-        AudioManager.Instance.PlaySound("Tiles Rising", 1 , 0.5f, 0.3f, 0.85f);
-    }
-    
-    public void LoadEndScene()
-    {
-        SceneManager.LoadScene("EndScene");    
-    }
-
-    public void OnApplicationQuit()
-    {
-        Application.Quit();
-    }
-
-
-    public IEnumerator waitBeforeLoading()
-    {
-        yield return new WaitForSeconds(15f);
-        LoadEndScene();
-    }
-    
+   
     
 }

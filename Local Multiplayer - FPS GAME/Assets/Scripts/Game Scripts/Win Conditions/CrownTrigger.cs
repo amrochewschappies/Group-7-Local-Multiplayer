@@ -26,7 +26,7 @@ public class CoinTrigger : MonoBehaviour
         {
             GameObject hitInfo = other.gameObject;
             _gameManger.CheckWinner(hitInfo);
-            _gameManger.waitBeforeLoading();
+            SceneManage.smInstance.waitBeforeLoading();
             StartCoroutine(deleteCrown());
         }
     }

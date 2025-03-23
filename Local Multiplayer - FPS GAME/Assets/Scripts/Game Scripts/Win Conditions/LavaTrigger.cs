@@ -16,7 +16,7 @@ public class LavaTrigger : MonoBehaviour
         {
             GameObject hitPlayer = other.gameObject;
             _gameManger.CheckDeath(hitPlayer);
-            _gameManger.waitBeforeLoading();
+            SceneManage.smInstance.waitBeforeLoading();
         }
     }
     
