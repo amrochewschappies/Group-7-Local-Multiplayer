@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             timer = 0f; 
         }
 
-        if (timer <= 8.5f)
+        if (currentTime >= 8.5f)
         {
             ActivatePlayersMovement();    
         }
@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             StartCoroutine(waitBeforeLoading());
-
         }
     }
     
