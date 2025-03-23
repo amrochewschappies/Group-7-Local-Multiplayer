@@ -123,3 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58550c45235b0bc44aad131f84aef59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hexPoints: []
+  moveDuration: 1
+  moveDelay: 1
