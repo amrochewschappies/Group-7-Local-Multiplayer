@@ -38,8 +38,10 @@ public class GameManager : MonoBehaviour
     public bool hasWon = false;
     public bool hasDied = false;
     [SerializeField]private float timer = 0f; 
-    [SerializeField]private int currentTime = 0; 
-    
+    [SerializeField]private int currentTime = 0;
+
+    public Camera PodiumCamera;
+    public GameObject Podium;
     
     private void Start()
     {
@@ -79,16 +81,26 @@ public class GameManager : MonoBehaviour
     public void CheckWinner(GameObject player)
     {
         if (hasWon) return;
-        
+
         hasWon = true;
+        _player1.enabled = false;
+        _player2.enabled = false;
+        PodiumCamera.enabled = true;
         if (player == player1)
-        {   
-            //make camera move to player 1
+        {
+
+            player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             StartCoroutine(waitBeforeLoading());
         }
         else if (player == player2)
         {
-
+            player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             StartCoroutine(waitBeforeLoading());
 
         }
@@ -96,16 +108,28 @@ public class GameManager : MonoBehaviour
     
     public void CheckDeath(GameObject player)
     {
-        if(hasDied) return;
+        if (hasDied) return;
         hasDied = true;
+
+        _player1.enabled = false;
+        _player2.enabled = false;
+        PodiumCamera.enabled = true;
         if (player == player1)
         {
-            
 
-        }else if (player == player2)
+            player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+
+
+        }
+        else if (player == player2)
         {
-
-
+            player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
+            player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
         }
     }
     
