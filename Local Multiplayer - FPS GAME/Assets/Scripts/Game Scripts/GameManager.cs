@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     
     public GameObject player1;
     public GameObject player2;
+    public Camera PodiumCamera;
+    public GameObject Podium;
+    public GameObject Canvas;
     
     [Header("LiveGame Checks")]
     public bool hasWon = false;
@@ -40,14 +43,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]private float timer = 0f; 
     [SerializeField]private int currentTime = 0;
 
-    public Camera PodiumCamera;
-    public GameObject Podium;
+
     
     private void Start()
     {
         currentTime = 0;
-        _player1.enabled = false;
-        _player2.enabled = false;
+        Canvas.SetActive(false);
     }
 
     private void Update()
@@ -59,9 +60,10 @@ public class GameManager : MonoBehaviour
             timer = 0f; 
         }
 
-        if (timer <= 8.5f)
+        if (currentTime >= 8.5f && !hasWon && !hasDied)
         {
             ActivatePlayersMovement();    
+            Canvas.SetActive(true);
         }
     }
     
@@ -87,14 +89,12 @@ public class GameManager : MonoBehaviour
     public void CheckWinner(GameObject player)
     {
         if (hasWon) return;
-
         hasWon = true;
-        _player1.enabled = false;
-        _player2.enabled = false;
+        Canvas.SetActive(false);
         PodiumCamera.enabled = true;
         if (player == player1)
         {
-
+            
             player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         }
         else if (player == player2)
         {
+            
             player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
@@ -116,13 +117,11 @@ public class GameManager : MonoBehaviour
     {
         if (hasDied) return;
         hasDied = true;
-
-        _player1.enabled = false;
-        _player2.enabled = false;
+        Canvas.SetActive(false);
         PodiumCamera.enabled = true;
         if (player == player1)
         {
-
+            
             player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);

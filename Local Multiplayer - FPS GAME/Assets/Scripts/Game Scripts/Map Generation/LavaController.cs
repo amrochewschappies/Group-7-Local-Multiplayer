@@ -36,5 +36,6 @@ public class LavaController : MonoBehaviour
             float normalizedValue = Mathf.InverseLerp(minHeight, maxHeight, LavaPlane.transform.position.y);
             lavaSlider.value = normalizedValue;
         }
+        
     }
 }
