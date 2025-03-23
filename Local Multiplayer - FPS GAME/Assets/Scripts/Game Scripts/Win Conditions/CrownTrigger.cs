@@ -26,7 +26,16 @@ public class CoinTrigger : MonoBehaviour
         {
             GameObject hitInfo = other.gameObject;
             _gameManger.CheckWinner(hitInfo);
-            SceneManage.smInstance.waitBeforeLoading();
+            if (_gameManger != null)
+            {
+                _gameManger.CheckDeath(hitInfo);
+                SceneManage.smInstance.waitBeforeLoading();
+                Debug.Log("Loading Back to start Scene");
+            }
+            else
+            {
+                Debug.LogError("GameManager is not assigned properly.");
+            }
             StartCoroutine(deleteCrown());
         }
     }

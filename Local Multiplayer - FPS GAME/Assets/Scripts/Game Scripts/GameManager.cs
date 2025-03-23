@@ -48,9 +48,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentTime = 0;
+        DeactivatePlayersMovement();
         Canvas.SetActive(false);
         AudioManager.Instance.PlaySound("Tiles Rising", 1 , 0.5f, 0f, 1.5f);
-        AudioManager.Instance.PlaySound("Announcer - Start", 1 , 0.5f, 6f, 1f);
+        AudioManager.Instance.PlaySound("Announcer - Start", 1 , 0.5f, 5.5f, 1f);
 
         
     }
@@ -103,7 +104,8 @@ public class GameManager : MonoBehaviour
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-           // StartCoroutine(smInstance.waitBeforeLoading());
+            StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+            Debug.Log("Loading back to start scene.");
         }
         else if (player == player2)
         {
@@ -112,7 +114,8 @@ public class GameManager : MonoBehaviour
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-           // StartCoroutine(waitBeforeLoading());
+           StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+           Debug.Log("Loading back to start scene.");
 
         }
     }

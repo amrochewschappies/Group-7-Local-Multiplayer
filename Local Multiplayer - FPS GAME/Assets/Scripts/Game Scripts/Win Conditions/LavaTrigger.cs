@@ -15,8 +15,17 @@ public class LavaTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameObject hitPlayer = other.gameObject;
-            _gameManger.CheckDeath(hitPlayer);
-            SceneManage.smInstance.waitBeforeLoading();
+            
+            if (_gameManger != null)
+            {
+                _gameManger.CheckDeath(hitPlayer);
+                SceneManage.smInstance.waitBeforeLoading();
+                Debug.Log("Loading Back to start Scene");
+            }
+            else
+            {
+                Debug.LogError("GameManager is not assigned properly.");
+            }
         }
     }
     
