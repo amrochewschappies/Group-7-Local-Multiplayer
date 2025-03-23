@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
         foreach (AudioClip clip in clips)
         {
             soundLibrary[clip.name] = clip;
-            Debug.Log($"Loaded audio clip: {clip.name}");
+            
         }
         
         if (player1Source == null)

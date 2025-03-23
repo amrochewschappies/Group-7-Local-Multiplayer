@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             timer = 0f; 
         }
 
-        if (timer <= 8.5f)
+        if (currentTime >= 8.5f)
         {
             ActivatePlayersMovement();    
         }
@@ -88,9 +88,7 @@ public class GameManager : MonoBehaviour
         }
         else if (player == player2)
         {
-
             StartCoroutine(waitBeforeLoading());
-
         }
     }
     
@@ -100,12 +98,13 @@ public class GameManager : MonoBehaviour
         hasDied = true;
         if (player == player1)
         {
-            
+            StartCoroutine(waitBeforeLoading());
+            Debug.Log("Player 1 has died");    
 
         }else if (player == player2)
         {
-
-
+            Debug.Log("Player 2 has died");
+            StartCoroutine(waitBeforeLoading());
         }
     }
     

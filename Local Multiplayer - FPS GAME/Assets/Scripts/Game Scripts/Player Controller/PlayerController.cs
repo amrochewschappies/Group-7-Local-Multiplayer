@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveTile;
     private bool jumpInput;
     private PlayerInput playerInput;
+    [SerializeField] private int playerNumber;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool wasInAir = false;
     public LayerMask groundLayer;
@@ -105,6 +106,11 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAnimator.SetBool("IsLifting", false);
             PlayerAnimator.SetBool("IsLowering", false);
+            AudioManager.Instance.PlaySound("Running", playerNumber, 0.3f);
+        }
+        else
+        {
+            AudioManager.Instance.StopSound(playerNumber);
         }
     }
 
@@ -159,6 +165,7 @@ public class PlayerController : MonoBehaviour
             if (wasInAir)
             {
                 StartCoroutine(TriggerRumble(0.2f, 0.8f, 0.175f)); 
+                // AudioManager.Instance.PlaySound();
             }
             coyoteTimeCounter = coyoteTime;
             wasInAir = false;
