@@ -77,6 +77,12 @@ public class GameManager : MonoBehaviour
         _player2.enabled = true;
     }
     
+    void DeactivatePlayersMovement()
+    {
+        _player1.enabled = false;
+        _player2.enabled = false;
+    }
+    
     //win conditions
     public void CheckWinner(GameObject player)
     {
@@ -142,6 +148,7 @@ public class GameManager : MonoBehaviour
     
     public void LoadMainScene()
     {
+        DeactivatePlayersMovement();
         SceneManager.LoadScene("GameScene");
     }
     
@@ -161,5 +168,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15f);
         LoadEndScene();
     }
+    
     
 }

@@ -33,16 +33,16 @@ public class AudioManager : MonoBehaviour
         foreach (AudioClip clip in clips)
         {
             soundLibrary[clip.name] = clip;
-            Debug.Log($"Loaded audio clip: {clip.name}");
+            //Debug.Log($"Loaded audio clip: {clip.name}");
         }
         
         if (player1Source == null)
         {
-            Debug.LogError("Player 1 AudioSource is not assigned!");
+            //Debug.LogError("Player 1 AudioSource is not assigned!");
         }
         if (player2Source == null)
         {
-            Debug.LogError("Player 2 AudioSource is not assigned!");
+           // Debug.LogError("Player 2 AudioSource is not assigned!");
         }
         
     }
@@ -61,12 +61,12 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
+               // Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
             }
         }
         else
         {
-            Debug.LogWarning($"AudioClip with name {clipName} not found in sound library.");
+           // Debug.LogWarning($"AudioClip with name {clipName} not found in sound library.");
         }
     }
 
@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
+            // Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
         }
     }
     
