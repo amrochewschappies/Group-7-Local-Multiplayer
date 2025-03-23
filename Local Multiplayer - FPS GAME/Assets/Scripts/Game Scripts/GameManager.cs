@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     //GM assists with audio queues
     [Header("References")] 
     public PlayerController _player1;
-    public Player2Controller _player2;
+    public PlayerController _player2;
     
     
     public GameObject player1;
