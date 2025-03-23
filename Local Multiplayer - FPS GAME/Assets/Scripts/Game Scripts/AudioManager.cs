@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -47,29 +48,35 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PlaySound(string clipName, int playerNumber, float volume)
+    public void PlaySound(string clipName, int playerNumber, float volume, float delay, float pitch)
     {
+        StartCoroutine(PlaySoundWithDelay(clipName, playerNumber, volume, delay, pitch));
+    }
+
+    private IEnumerator PlaySoundWithDelay(string clipName, int playerNumber, float volume, float delay, float pitch)
+    {
+        yield return new WaitForSeconds(delay);
         if (soundLibrary.TryGetValue(clipName, out AudioClip clip))
         {
             AudioSource targetSource = playerNumber == 1 ? player1Source : player2Source;
-
             if (targetSource != null)
             {
+             
                 targetSource.clip = clip;
                 targetSource.volume = volume;
+                targetSource.pitch = pitch; 
                 targetSource.Play();
             }
             else
             {
-               // Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
+                // Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
             }
         }
         else
         {
-           // Debug.LogWarning($"AudioClip with name {clipName} not found in sound library.");
+            // Debug.LogWarning($"AudioClip with name {clipName} not found in sound library.");
         }
     }
-
 
     public void StopSound(int playerNumber)
     {

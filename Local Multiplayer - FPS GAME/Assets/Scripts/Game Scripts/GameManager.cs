@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     //GM assists with audio queues
     [Header("References")] 
     public PlayerController _player1;
-    public PlayerController _player2;
+    public Player2Controller _player2;
     
     
     public GameObject player1;
@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour
     {
         currentTime = 0;
         Canvas.SetActive(false);
+        AudioManager.Instance.PlaySound("Tiles Rising", 1 , 0.5f, 0f, 1.5f);
+        AudioManager.Instance.PlaySound("Announcer - Start", 1 , 0.5f, 6f, 1f);
+
+        
     }
 
     private void Update()
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
             timer = 0f; 
         }
 
-        if (currentTime >= 8.5f && !hasWon && !hasDied)
+        if (currentTime >= 10f && !hasWon && !hasDied)
         {
             ActivatePlayersMovement();    
             Canvas.SetActive(true);
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour
     {
         DeactivatePlayersMovement();
         SceneManager.LoadScene("GameScene");
+        AudioManager.Instance.PlaySound("Tiles Rising", 1 , 0.5f, 0.3f, 0.85f);
     }
     
     public void LoadEndScene()

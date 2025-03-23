@@ -111,12 +111,14 @@ public class TileController : MonoBehaviour
                 targetScale.z += 15;
                 PlayerAnimator.SetBool("IsLifting", true);
                 StartCoroutine(AnimationStop(0.5f));
+                AudioManager.Instance.PlaySound("ROCK RISING", 1 , 0.7f, 0f, 1.5f);
             }
             else
             {
                 targetScale.z -= 15;
                 PlayerAnimator.SetBool("IsLowering", true);
                 StartCoroutine(AnimationStop(0.5f));
+                AudioManager.Instance.PlaySound("ROCK LOWERING", 1 , 0.7f, 0f, 1.2f);
             }
 
             targetPosition = new Vector3(SelectedTile.transform.position.x, targetScale.z * 0.0397325f, SelectedTile.transform.position.z);

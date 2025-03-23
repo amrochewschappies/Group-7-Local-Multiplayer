@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-public class PlayerController : MonoBehaviour
+public class Player2Controller : MonoBehaviour
 {
+    
     
     #region Player Control
 
@@ -55,12 +54,12 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public Animator PlayerAnimator;
     #endregion
+
     
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
-
     }
 
     private void OnEnable()
@@ -191,7 +190,7 @@ public class PlayerController : MonoBehaviour
         jumpInput = false;
     }
 
-    private void ApplyGravity()
+    public void ApplyGravity()
     {
         if (!isGrounded)
         {
@@ -206,7 +205,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator TriggerRumble(float lowFrequency, float highFrequency, float duration)
+    private IEnumerator TriggerRumble(float lowFrequency, float highFrequency, float duration)
     {
         if (isController)
         {
