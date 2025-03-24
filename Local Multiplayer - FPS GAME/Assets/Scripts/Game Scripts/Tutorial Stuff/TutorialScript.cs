@@ -38,6 +38,14 @@ public class TutorialScript : MonoBehaviour
     IEnumerator waitBeforeLoadingStart()
     {
         yield return new WaitForSeconds(3f);
-        SceneManage.smInstance.LoadStartScene();
+    
+        if (SceneManage.smInstance != null)
+        {
+            SceneManage.smInstance.LoadStartScene();
+        }
+        else
+        {
+            Debug.LogError("SceneManage instance is not initialized!");
+        }
     }
 }

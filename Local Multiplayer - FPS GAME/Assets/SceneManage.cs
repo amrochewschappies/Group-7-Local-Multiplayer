@@ -37,14 +37,12 @@ public class SceneManage : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "LoadingScene" && !isLoaded)
         {
-    
             timer += Time.deltaTime;
             if (timer >= 1f)
             {
                 currentTime += 1;
                 timer = 0f;
             }
-
 
             if (currentTime >= 42f)
             {
@@ -59,19 +57,19 @@ public class SceneManage : MonoBehaviour
         }
     }
 
-
     public void LoadStartScene()
     {
         isLoaded = false;
         SceneManager.LoadScene("StartScene");
         Debug.Log("StartScene is loading");
-    }
+    } 
 
     public void LoadTutorialScene()
     {
         isLoaded = false;
         SceneManager.LoadScene("TutorialScene");
     }
+    
     public void LoadMainScene()
     {
         if (isLoaded || isLoading) 
@@ -106,19 +104,23 @@ public class SceneManage : MonoBehaviour
         Debug.Log("Game scene loaded.");
     }
 
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
         if (scene.name == "StartScene")
         {
-          
-            isLoaded = false;
+            isLoaded = false;  
             Debug.Log("Back to StartScene.");
         }
         else if (scene.name == "GameScene")
         {
-            isLoaded = true; 
+            isLoaded = true;  
             Debug.Log("Loaded GameScene.");
+        }
+        else if (scene.name == "TutorialScene")
+        {
+            isLoaded = true;
+            Debug.Log("Loaded TutorialScene.");
         }
     }
 
