@@ -42,6 +42,7 @@ public class TutorialScript : MonoBehaviour
         if (SceneManage.smInstance != null)
         {
             SceneManage.smInstance.LoadStartScene();
+            Debug.Log("Loaded Start Scene from Tutorial Scene");
         }
         else
         {

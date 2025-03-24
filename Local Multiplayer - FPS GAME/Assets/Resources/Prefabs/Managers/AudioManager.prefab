@@ -46,3 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1Source: {fileID: 0}
   player2Source: {fileID: 0}
+  jumpClips:
+  - {fileID: 8300000, guid: 42c8384c1f4470847aea8f5af1c99084, type: 3}
+  - {fileID: 8300000, guid: 1b934a00bdb120c4eb539573bf8c7a92, type: 3}
+  - {fileID: 8300000, guid: b8faec1bded9be94bb1e0ce147ed9306, type: 3}
+  landClips:
+  - {fileID: 8300000, guid: 562ae46880c1ae24099ea54de4e47112, type: 3}
+  - {fileID: 8300000, guid: c8cf55547db1b314dbe7f9518f5e583d, type: 3}

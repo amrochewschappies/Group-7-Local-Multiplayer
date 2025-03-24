@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
         Canvas.SetActive(false);
         PodiumCamera.enabled = true;
-        StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+        StartCoroutine(SceneManage.smInstance.WaitBeforeLoading());
         if (player == player1)
         {
        
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
         Canvas.SetActive(false);
         PodiumCamera.enabled = true;
-        StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+        StartCoroutine(SceneManage.smInstance.WaitBeforeLoading());
         if (player == player1)
         {
             

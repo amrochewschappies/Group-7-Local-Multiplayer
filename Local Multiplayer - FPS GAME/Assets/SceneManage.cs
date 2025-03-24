@@ -50,27 +50,27 @@ public class SceneManage : MonoBehaviour
                 isLoaded = true;
             }
         }
-        else if (isLoaded)
+        else if (SceneManager.GetActiveScene().name != "LoadingScene")
         {
-            currentTime = 0;
             timer = 0;
+            currentTime = 0;
         }
     }
 
     public void LoadStartScene()
     {
         isLoaded = false;
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
         Debug.Log("StartScene is loading");
     } 
 
     public void LoadTutorialScene()
     {
         isLoaded = false;
-        SceneManager.LoadScene("TutorialScene");
+        SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
     }
     
-    public void LoadMainScene()
+   public void LoadMainScene()
     {
         if (isLoaded || isLoading) 
         {
@@ -87,18 +87,21 @@ public class SceneManage : MonoBehaviour
         Application.Quit();
     }
     
-    public IEnumerator waitBeforeLoading()
+    
+    //using this for when player dies or touches the lava
+    public IEnumerator WaitBeforeLoading()
     {
         yield return new WaitForSeconds(15f);
         LoadStartScene();
         GameManager.gmInstance.isSceneLoading = false;
     }
     
+    //using this for when start button is click to delay the start animation
     private IEnumerator WaitBeforeLoadingMain()
     {
         Debug.Log("Main scene is loading...");
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         isLoaded = true;
         isLoading = false; 
         Debug.Log("Game scene loaded.");
@@ -107,21 +110,8 @@ public class SceneManage : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
-        if (scene.name == "StartScene")
-        {
-            isLoaded = false;  
-            Debug.Log("Back to StartScene.");
-        }
-        else if (scene.name == "GameScene")
-        {
-            isLoaded = true;  
-            Debug.Log("Loaded GameScene.");
-        }
-        else if (scene.name == "TutorialScene")
-        {
-            isLoaded = true;
-            Debug.Log("Loaded TutorialScene.");
-        }
+        isLoaded = scene.name != "StartScene";
+        Debug.Log($"Loaded {scene.name}.");
     }
 
     private void OnDestroy()
