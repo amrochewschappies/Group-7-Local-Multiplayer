@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private bool hasJumpSoundPlayed = false;
+
 
     //sensitivity
     [SerializeField] [Range(0f, 15f)] private float mouseSensitivity = 2f;
@@ -165,6 +167,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
             wasInAir = false;
             PlayerAnimator.SetBool("IsJumping", false);
+            hasJumpSoundPlayed = false;
         }
         else
         {
@@ -172,8 +175,13 @@ public class PlayerController : MonoBehaviour
             wasInAir = true;
         }
 
-        if (jumpInput)
+        if (jumpInput && !hasJumpSoundPlayed)
         {
+            if (!hasJumpSoundPlayed)
+            {
+                AudioManager.Instance.RandomiseActionSound("jump", 1, 1f, 0f, 1f); 
+                hasJumpSoundPlayed = true; 
+            }
             PlayerAnimator.SetBool("IsJumping", true);
             jumpBufferCounter = jumpBufferTime;
         }
@@ -181,6 +189,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpBufferCounter -= Time.deltaTime;
         }
+
 
         if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
         {

@@ -9,7 +9,6 @@ public class SceneManage : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern
         if (smInstance != null && smInstance != this)
         {
             Destroy(gameObject);
@@ -24,24 +23,21 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private float timer = 0f;
     [SerializeField] private int currentTime = 0;
     [SerializeField] private bool isLoaded = false;
-    public GameObject LoadingAnim;
+    private bool isLoading = false; 
 
     private void Start()
     {
         currentTime = 0;
         timer = 0;
-
-        // Ensure LoadingAnim is deactivated at the start
-        LoadingAnim.SetActive(false);
-
-        // Subscribe to scene loaded event
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        if (!isLoaded)
+        if (SceneManager.GetActiveScene().name == "LoadingScene" && !isLoaded)
         {
+    
             timer += Time.deltaTime;
             if (timer >= 1f)
             {
@@ -49,76 +45,85 @@ public class SceneManage : MonoBehaviour
                 timer = 0f;
             }
 
+
             if (currentTime >= 42f)
             {
-                LoadStartScene();
+                LoadTutorialScene();
                 isLoaded = true;
             }
         }
+        else if (isLoaded)
+        {
+            currentTime = 0;
+            timer = 0;
+        }
     }
 
-    // Scenes
+
     public void LoadStartScene()
     {
+        isLoaded = false;
         SceneManager.LoadScene("StartScene");
+        Debug.Log("StartScene is loading");
     }
 
+    public void LoadTutorialScene()
+    {
+        isLoaded = false;
+        SceneManager.LoadScene("TutorialScene");
+    }
     public void LoadMainScene()
     {
-        if (LoadingAnim != null)
+        if (isLoaded || isLoading) 
         {
-            LoadingAnim.SetActive(true);
+            Debug.Log("Main Scene is already loading or has been loaded.");
+            return;
         }
+
+        isLoading = true; 
         StartCoroutine(WaitBeforeLoadingMain());
-    }
-
-    public void LoadEndScene()
-    {
-
-        SceneManager.LoadScene("EndScene");
     }
 
     public void OnApplicationQuit()
     {
         Application.Quit();
     }
-
-
+    
     public IEnumerator waitBeforeLoading()
     {
         yield return new WaitForSeconds(15f);
         LoadStartScene();
+        GameManager.gmInstance.isSceneLoading = false;
     }
-
+    
     private IEnumerator WaitBeforeLoadingMain()
     {
         Debug.Log("Main scene is loading...");
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("GameScene");
+        isLoaded = true;
+        isLoading = false; 
         Debug.Log("Game scene loaded.");
     }
-    
+
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "StartScene")
         {
-            if (LoadingAnim != null)
-            {
-                LoadingAnim.SetActive(false);
-            }
+          
+            isLoaded = false;
+            Debug.Log("Back to StartScene.");
         }
-        else
+        else if (scene.name == "GameScene")
         {
-            if (LoadingAnim != null)
-            {
-                LoadingAnim.SetActive(false);
-            }
+            isLoaded = true; 
+            Debug.Log("Loaded GameScene.");
         }
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the sceneLoaded event when the object is destroyed
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

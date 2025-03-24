@@ -11,7 +11,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource player2Source;
 
     [SerializeField] private Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
-
+    
+    
+    [SerializeField] private AudioClip[] jumpClips;
+    [SerializeField] private AudioClip[] landClips;
     private void Awake()
     {
         // Singleton pattern
@@ -91,6 +94,32 @@ public class AudioManager : MonoBehaviour
             // Debug.LogError($"AudioSource for Player {playerNumber} is not assigned!");
         }
     }
-    
 
+
+    public void RandomiseActionSound(string action, int playerNumber, float volume, float delay, float pitch)
+    {
+        AudioClip[] selectedClips = null;
+        switch (action.ToLower())
+        {
+            case "jump":
+                selectedClips = jumpClips;
+                break;
+            case "land":
+                selectedClips = landClips;
+                break;
+            default:
+                Debug.LogWarning($"Action '{action}' not recognized.");
+                return;
+        }
+
+        if (selectedClips != null && selectedClips.Length > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, selectedClips.Length);
+            PlaySound(selectedClips[randomIndex].name, playerNumber, volume, delay, pitch);
+        }
+        else
+        {
+            Debug.LogWarning($"No clips found for {action} action.");
+        }
+    }
 }

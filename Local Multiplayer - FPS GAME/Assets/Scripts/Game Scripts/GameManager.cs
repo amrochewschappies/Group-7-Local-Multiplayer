@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gmInstance { get; private set; }
@@ -18,7 +19,6 @@ public class GameManager : MonoBehaviour
         {
             gmInstance = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     //GM checks winner
@@ -38,10 +38,19 @@ public class GameManager : MonoBehaviour
     public GameObject Canvas;
     
     [Header("LiveGame Checks")]
-    public bool hasWon = false;
-    public bool hasDied = false;
+    [Header("Scenes")]
+    public bool isSceneLoading = false; 
+    [Header("LiveTimer")]
     [SerializeField]private float timer = 0f; 
     [SerializeField]private int currentTime = 0;
+    [Header("Halfway")]
+    private bool player1Halfway = false;
+    private bool player2Halfway = false;
+    [Header("Endgame")]
+    public bool hasWon = false;
+    public bool hasDied = false;
+
+
 
 
     
@@ -93,39 +102,58 @@ public class GameManager : MonoBehaviour
     //win conditions
     public void CheckWinner(GameObject player)
     {
-        if (hasWon) return;
+        if (hasWon || isSceneLoading) return; 
         hasWon = true;
+        isSceneLoading = true; 
+
         Canvas.SetActive(false);
         PodiumCamera.enabled = true;
+        StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
         if (player == player1)
         {
-            
+       
             player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-            StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+            StartCoroutine(_player1.TriggerRumble(0.1f, 0.6f, 0.1f));
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound("Chime", 1, 1f, 0f,1f);
+                AudioManager.Instance.PlaySound("Player1Wins", 1, 1f, 1.6f,1f);
+                AudioManager.Instance.PlaySound("TaDa", 1, 1f, 5f,1f);
+            }
             Debug.Log("Loading back to start scene.");
         }
         else if (player == player2)
         {
-            
+
             player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-           StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
+            player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f); ;
+           StartCoroutine(_player1.TriggerRumble(0.1f, 0.6f, 0.1f));
+           if (AudioManager.Instance != null)
+           {
+               AudioManager.Instance.PlaySound("Chime", 1, 1f, 0f,1f);
+               AudioManager.Instance.PlaySound("Player2Wins", 1, 1f, 0.5f,1f);  
+               AudioManager.Instance.PlaySound("TaDa", 1, 1f, 5f,1f); 
+           }
            Debug.Log("Loading back to start scene.");
-
+    
         }
     }
     
     public void CheckDeath(GameObject player)
     {
-        if (hasDied) return;
+        if (hasDied || isSceneLoading) return; 
         hasDied = true;
+        
+        isSceneLoading = true; 
+
         Canvas.SetActive(false);
         PodiumCamera.enabled = true;
+        StartCoroutine(SceneManage.smInstance.waitBeforeLoading());
         if (player == player1)
         {
             
@@ -133,8 +161,11 @@ public class GameManager : MonoBehaviour
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
-
-
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound("player1touched", 1, 1f, 0.5f,1f);  
+            }
+            StartCoroutine(_player1.TriggerRumble(0.1f, 0.6f, 0.1f));
         }
         else if (player == player2)
         {
@@ -142,10 +173,52 @@ public class GameManager : MonoBehaviour
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
             player2.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound("player2touched", 1, 1f, 0.5f,1f);
+            }
+            StartCoroutine(_player1.TriggerRumble(0.1f, 0.6f, 0.1f));
         }
     }
-    
-    
+
+    public void CheckHalfWay(GameObject player)
+    {
+        if (player == player1)
+        {
+            if (!player1Halfway)  
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySound("Player1halfway", 1, 1f, 0.5f, 1f);
+                }
+                player1Halfway = true; 
+            }
+        }
+        else if (player == player2)
+        {
+            if (!player2Halfway) 
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySound("Player2halfway", 1, 1f, 0.5f, 1f);
+                }
+                player2Halfway = true; 
+            }
+        }
+
+        if (player1Halfway && player2Halfway)
+        {
+            OnBothPlayersHalfway();
+        }
+    }
+
+
+    private void OnBothPlayersHalfway()
+    {
+        Debug.Log("Both players have reached halfway!");
+
+    }
+}
    
     
-}
+

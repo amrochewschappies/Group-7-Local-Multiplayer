@@ -13,7 +13,6 @@ public class CoinTrigger : MonoBehaviour
     private void Start()
     {
         _gameManger = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
         StartCoroutine(MoveBetweenPoints());
     }
 
@@ -25,16 +24,9 @@ public class CoinTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameObject hitInfo = other.gameObject;
-            _gameManger.CheckWinner(hitInfo);
-            if (_gameManger != null)
+            if (_gameManger!= null)
             {
-                _gameManger.CheckDeath(hitInfo);
-                SceneManage.smInstance.waitBeforeLoading();
-                Debug.Log("Loading Back to start Scene");
-            }
-            else
-            {
-                Debug.LogError("GameManager is not assigned properly.");
+                _gameManger.CheckWinner(hitInfo);    
             }
             StartCoroutine(deleteCrown());
         }

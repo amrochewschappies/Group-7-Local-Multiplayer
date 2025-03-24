@@ -3,12 +3,8 @@ using UnityEngine;
 
 public class LavaTrigger : MonoBehaviour
 {
-    private GameManager _gameManger;
+    public GameManager _gameManger;
 
-    private void Awake()
-    {
-        _gameManger = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +15,6 @@ public class LavaTrigger : MonoBehaviour
             if (_gameManger != null)
             {
                 _gameManger.CheckDeath(hitPlayer);
-                SceneManage.smInstance.waitBeforeLoading();
                 Debug.Log("Loading Back to start Scene");
             }
             else
@@ -28,6 +23,7 @@ public class LavaTrigger : MonoBehaviour
             }
         }
     }
+    
     
     
 }
