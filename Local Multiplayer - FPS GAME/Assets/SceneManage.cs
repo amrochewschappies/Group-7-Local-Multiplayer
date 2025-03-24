@@ -24,7 +24,7 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private float timer = 0f;
     [SerializeField] private int currentTime = 0;
     [SerializeField] private bool isLoaded = false;
-    public GameObject LoadingAnim;
+   // public GameObject LoadingAnim;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class SceneManage : MonoBehaviour
         timer = 0;
 
         // Ensure LoadingAnim is deactivated at the start
-        LoadingAnim.SetActive(false);
+        //LoadingAnim.SetActive(false);
 
         // Subscribe to scene loaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -65,10 +65,10 @@ public class SceneManage : MonoBehaviour
 
     public void LoadMainScene()
     {
-        if (LoadingAnim != null)
+        /*if (LoadingAnim != null)
         {
             LoadingAnim.SetActive(true);
-        }
+        }*/
         StartCoroutine(WaitBeforeLoadingMain());
     }
 
@@ -100,7 +100,7 @@ public class SceneManage : MonoBehaviour
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "StartScene")
+        /*if (scene.name == "StartScene")
         {
             if (LoadingAnim != null)
             {
@@ -113,7 +113,7 @@ public class SceneManage : MonoBehaviour
             {
                 LoadingAnim.SetActive(false);
             }
-        }
+        }*/
     }
 
     private void OnDestroy()
