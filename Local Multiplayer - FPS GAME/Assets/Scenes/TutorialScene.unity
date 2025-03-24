@@ -46479,7 +46479,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1619133512987060052, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 76.2
+      value: -107.18
       objectReference: {fileID: 0}
     - target: {fileID: 1619133512987060052, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46533,11 +46533,31 @@ PrefabInstance:
       propertyPath: CooldownSlider
       value: 
       objectReference: {fileID: 1853515784}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5867527798826337115, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5696387946942395372, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2095751735}
   m_SourcePrefab: {fileID: 100100000, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+--- !u!82 &1030571588 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3667733814345600095, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+  m_PrefabInstance: {fileID: 1030571587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1030571589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7441689749859342941, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
+  m_PrefabInstance: {fileID: 1030571587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095751723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1035851669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101117,6 +101137,31 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 644593832062270124, guid: f040fbafe63a3454fb6e3f86ffca3268, type: 3}
   m_PrefabInstance: {fileID: 1030571587}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2095751735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095751723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f697be10fba3c7478a872e88eac18c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 1030571588}
+  WelcomeClip: {fileID: 8300000, guid: 275e121277323c24781e0de75a317382, type: 3}
+  JumpClip: {fileID: 8300000, guid: 41bfd48af182a7f4ca029cc9801a58c7, type: 3}
+  MoveTileUp: {fileID: 8300000, guid: 2029e9b2d210abc4e8530af1c40e0f17, type: 3}
+  MoveTileDown: {fileID: 8300000, guid: d7ac785c5a140e44084746d2f4e8a3a1, type: 3}
+  ClosingClip: {fileID: 8300000, guid: ac0890798e932dc42a5d1295acbb81a8, type: 3}
+  playerController: {fileID: 2095751726}
+  Player: {fileID: 2095751723}
+  playerInput: {fileID: 1030571589}
+  isMouse: 0
+  isController: 0
+  videoPlayer: {fileID: 0}
+  pauseTimes: []
 --- !u!1001 &2098610759
 PrefabInstance:
   m_ObjectHideFlags: 0
