@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 public class TutorialAudio : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class TutorialAudio : MonoBehaviour
     public bool isMouse;
     public bool isController;
 
+    public VideoPlayer videoPlayer;  
+    public float[] pauseTimes;
+
     private bool JumpClipPlayed = false;
     private bool RaiseClipPlayed = false;
     private bool LowerClipPlayed = false;
@@ -29,6 +33,11 @@ public class TutorialAudio : MonoBehaviour
         isMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
         isController = playerInput.currentControlScheme == "Gamepad";
 
+        /*if (videoPlayer != null && pauseTimes.Length > 0)
+        {
+            videoPlayer.Play();
+            StartCoroutine(PauseAtTimesCoroutine());
+        }*/
         // Subscribe to events once
         playerInput.actions["Move"].performed += OnMovePerformed;
         playerInput.actions["Jump"].performed += OnJumpPerformed;
@@ -94,4 +103,14 @@ public class TutorialAudio : MonoBehaviour
     {
         playerController.enabled = true;
     }
+
+    /*IEnumerator PauseAtTimesCoroutine()
+    {
+        foreach (float pauseTime in pauseTimes)
+        {
+            yield return new WaitForSeconds(pauseTime);  // Wait for the specified time
+            videoPlayer.Pause();  // Pause the video
+            Debug.Log("Video paused at " + pauseTime + " seconds.");
+        }
+    }*/
 }
