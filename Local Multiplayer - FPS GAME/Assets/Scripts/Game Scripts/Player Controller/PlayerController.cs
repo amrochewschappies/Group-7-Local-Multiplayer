@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
-
+        Cursor.visible = false;
     }
 
     private void OnEnable()

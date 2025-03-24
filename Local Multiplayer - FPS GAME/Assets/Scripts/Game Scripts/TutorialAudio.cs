@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Video;
+using System;
+using System.Collections;
 
 public class TutorialAudio : MonoBehaviour
 {
@@ -28,7 +30,6 @@ public class TutorialAudio : MonoBehaviour
         playerInput = Player.GetComponent<PlayerInput>();
         DisableController();
         Source.clip = WelcomeClip;
-        Source.Play();
 
         isMouse = playerInput.currentControlScheme == "Keyboard&Mouse";
         isController = playerInput.currentControlScheme == "Gamepad";
@@ -43,6 +44,13 @@ public class TutorialAudio : MonoBehaviour
         playerInput.actions["Jump"].performed += OnJumpPerformed;
         playerInput.actions["TileUp"].performed += OnTileUpPerformed;
         playerInput.actions["TileDown"].performed += OnTileDownPerformed;
+        StartCoroutine(PlayAudio());
+    }
+
+    IEnumerator PlayAudio()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Source.Play();
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
@@ -51,7 +59,7 @@ public class TutorialAudio : MonoBehaviour
         {
             EnableController();
             Source.clip = JumpClip;
-            Source.Play();
+            StartCoroutine(PlayAudio());
             JumpClipPlayed = true;
         }
     }
@@ -61,7 +69,7 @@ public class TutorialAudio : MonoBehaviour
         if (!RaiseClipPlayed && !Source.isPlaying && Source.clip == JumpClip)
         {
             Source.clip = MoveTileUp;
-            Source.Play();
+            StartCoroutine(PlayAudio());
             RaiseClipPlayed = true;
         }
     }
@@ -71,7 +79,7 @@ public class TutorialAudio : MonoBehaviour
         if (!LowerClipPlayed && !Source.isPlaying && Source.clip == MoveTileUp)
         {
             Source.clip = MoveTileDown;
-            Source.Play();
+            StartCoroutine(PlayAudio());
             LowerClipPlayed = true;
         }
     }
@@ -81,7 +89,7 @@ public class TutorialAudio : MonoBehaviour
         if (!Source.isPlaying && Source.clip == MoveTileDown)
         {
             Source.clip = ClosingClip;
-            Source.Play();
+            StartCoroutine(PlayAudio());
         }
     }
 
