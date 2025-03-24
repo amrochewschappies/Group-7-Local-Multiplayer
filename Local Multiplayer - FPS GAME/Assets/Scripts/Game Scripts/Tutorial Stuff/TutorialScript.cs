@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TutorialScript : MonoBehaviour
@@ -29,7 +30,14 @@ public class TutorialScript : MonoBehaviour
             PodiumCamera.enabled = true;
             player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-            
+            StartCoroutine(waitBeforeLoadingStart());
+
         }
+    }
+
+    IEnumerator waitBeforeLoadingStart()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManage.smInstance.LoadStartScene();
     }
 }

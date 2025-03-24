@@ -29,14 +29,13 @@ public class SceneManage : MonoBehaviour
     {
         currentTime = 0;
         timer = 0;
-
- 
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "StartScene" && !isLoaded)
+        if (SceneManager.GetActiveScene().name == "LoadingScene" && !isLoaded)
         {
     
             timer += Time.deltaTime;
@@ -49,7 +48,7 @@ public class SceneManage : MonoBehaviour
 
             if (currentTime >= 42f)
             {
-                LoadStartScene();
+                LoadTutorialScene();
                 isLoaded = true;
             }
         }
@@ -67,7 +66,12 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("StartScene");
         Debug.Log("StartScene is loading");
     }
-    
+
+    public void LoadTutorialScene()
+    {
+        isLoaded = false;
+        SceneManager.LoadScene("TutorialScene");
+    }
     public void LoadMainScene()
     {
         if (isLoaded || isLoading) 
